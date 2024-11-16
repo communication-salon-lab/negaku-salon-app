@@ -17,11 +17,10 @@ touch frontend/.env.local
 先輩チームメンバーに、記述する内容を聞く。
 
 
-#### 2.イメージ作成,bundleインストール,Docker起動
+#### 2.イメージ作成,Docker起動
 
 ```bash
 docker compose build
-bundle install
 docker compose up
 ```
 終了は control + cコマンドを入力します。
