@@ -9,11 +9,10 @@
 ```bash
 cd backend
 touch backend/.env.local
-cd ../
-
+```
+```bash
 cd frontend
 touch frontend/.env.local
-cd ../
 ```
 先輩チームメンバーに、記述する内容を聞く。
 
