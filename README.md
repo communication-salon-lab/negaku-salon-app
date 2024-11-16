@@ -7,11 +7,9 @@
 #### 1.環境変数ファイルの作成
 
 ```bash
-cd backend
 touch backend/.env.local
 ```
 ```bash
-cd frontend
 touch frontend/.env.local
 ```
 先輩チームメンバーに、記述する内容を聞く。
