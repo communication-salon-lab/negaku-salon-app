@@ -53,8 +53,13 @@ source ~/.bashrc
 ```
 
 #### 5.アプリケーションの起動
-- フロントエンド (React) はポート http://localhost:3500 でアクセスできます。
-- バックエンド (Rails API) はポート http://localhost:8000 でアクセスできます。
+バックエンドの起動
+```bash
+bin/rails s -b 0.0.0.0 -p 3500
+```
+
+- フロントエンド (React) はポート http://localhost:8000 でアクセスできます。
+- バックエンド (Rails API) はポート http://localhost:3500 でアクセスできます。
 - MySQLデータベースはポート 3306 で接続できます。
 
 
