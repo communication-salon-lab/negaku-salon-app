@@ -21,7 +21,7 @@ cd ../
 #### 2.イメージ作成,Docker起動
 
 ```bash
-docker compose build -t negaku-salon .
+docker compose build
 docker compose up
 ```
 終了は control + cコマンドを入力します。
@@ -29,11 +29,11 @@ docker compose up
 #### 3.コンテナへのログイン
 バックエンド
 ```bash
-docker exec -it backend bash
+docker exec -it back bash
 ```
 フロントエンド
 ```bash
-docker exec -it frontend bash
+docker exec -it front bash
 ```
 コンテナからログアウト
 ```bash

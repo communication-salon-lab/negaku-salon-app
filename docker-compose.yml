@@ -23,6 +23,7 @@ services:
       - db
     tty: true
     stdin_open: true
+    container_name: back
   front:
     platform: linux/amd64
     build:
@@ -34,6 +35,7 @@ services:
     command: yarn start
     ports:
       - "8000:8000"
+    container_name: front
 volumes:
   mysql_data:
 

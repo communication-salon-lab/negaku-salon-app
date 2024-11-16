@@ -16,7 +16,7 @@ RUN yarn build
 RUN yarn global add serve
 
 # ポートの公開
-EXPOSE 3000
+EXPOSE 8000
 
 # Reactを起動するコマンド
 CMD sh -c 'serve -s build -l tcp://0.0.0.0:8000'

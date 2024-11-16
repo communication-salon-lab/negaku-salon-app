@@ -1,5 +1,5 @@
 # ベースイメージ
-FROM --platform=linux/amd64 ruby:3.2.2
+FROM --platform=linux/amd64 ruby:3.2.2-bullseye
 
 # パッケージインストール
 RUN apt-get update -qq && apt-get install -y nodejs default-mysql-client
@@ -23,7 +23,7 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
 # ポートの公開
-EXPOSE 3002
+EXPOSE 3500
 
 # Railsサーバーを起動するコマンド
 CMD ["rails", "server", "-b", "0.0.0.0"]
