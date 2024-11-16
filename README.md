@@ -45,7 +45,7 @@ source ~/.bashrc
 ```
 フロントエンドにログイン後
 ```bash
-echo 'export PS1="\[\e[1;34m\]rails:\w \u\[\e[m\]# "' >> ~/.bashrc
+echo 'export PS1="\[\e[1;34m\]react:\w \u\[\e[m\]# "' >> ~/.bashrc
 source ~/.bashrc
 ```
 
