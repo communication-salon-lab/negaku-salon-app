@@ -7,11 +7,15 @@ module.exports = {
   },
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        default: "white" // デフォルトの背景色を白に変更
+      }
+    }
   },
   variants: {},
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "dark", "cupcake", "aqua", "pastel"],
+    themes: ["light"],
   },
 };
