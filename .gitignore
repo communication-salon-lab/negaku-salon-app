@@ -1,2 +1,8 @@
 # DS_Storeを除外
 .DS_Store
+
+# amplify
+node_modules
+.amplify
+amplify_outputs*
+amplifyconfiguration*
