@@ -1,78 +1,48 @@
 import React from "react";
-import Header from "../components/Header"; // ヘッダーコンポーネントのインポート
 
 const MainPage = () => {
-  // const today = new Date().toLocaleDateString(); // 日付を取得
-
   return (
-    <div>
-      {/* 背景セクション */}
-      <div className="relative w-full h-screen">
+    <div className="bg-Beige font-sans">
+      <div className="relative w-full h-screen animate-fade-in-fwd">
         {/* 背景画像 */}
         <img
           src="/salon.jpg"
           alt="サロン風景"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover z-0"
         />
 
-        {/* ヘッダー */}
-        <Header />
+        {/* ベージュのオーバーレイ */}
+        <div className="absolute inset-0 bg-Beige opacity-30 z-10"></div>
 
-        背景模様
-        <div className="absolute inset-0">
-          {/* 左上の模様 */}
-          <div
-            // className="absolute top-10 left-10 w-96 h-96 rounded-full bg-[#637d6e]"
-            // style={{ mixBlendMode: "overlay" }}
-          ></div>
-
-          {/* 左下の模様 */}
-          <div
-            // className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-[#b2bf9f]"
-            // style={{ mixBlendMode: "overlay" }}
-          ></div>
-
-          {/* 右上の模様 */}
-          <div className="absolute top-10 right-10">
-            <div
-              // className="w-96 h-96 rounded-full bg-[#dcdac4]"
-              // style={{ mixBlendMode: "overlay" }}
-            ></div>
-            {/* 日付表示
-            <div className="absolute top-10 right-10 text-lg text-white font-bold">
-              {today}
-            </div> */}
-          </div>
-
-          {/* 右下の模様 */}
-          <div
-            // className="absolute bottom-0 right-0 w-96 h-106 rounded-full bg-[#9ba860]"
-            // style={{ mixBlendMode: "overlay" }}
-          ></div>
-        </div>
-
-        {/* 中央テキスト */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center">
-          <h1 className="text-5xl font-bold text-white mb-4">
-            未来をつくる、つながる場所
+        <div className="absolute top-1/4 z-30">
+          {/* 右斜め上テキスト */}
+          <h1 className="text-5xl md:text-8xl md:ml-5 lg:text-9xl lg:ml-12 text-white font-klee mb-8 animate-tracking-in-expand">
+            未来をつくる、
+          </h1>
+          {/* 右斜め下テキスト */}
+          <h1 className="text-5xl ml-20 md:pl-10 md:text-8xl lg:text-9xl lg:ml-20 lg:pl-20 text-white font-klee animate-tracking-in-expand">
+            つながる場所
           </h1>
         </div>
+
+        {/* グラデーションで境界線を曖昧に */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradation z-20"></div>
       </div>
 
       {/* お知らせセクション */}
-      <div className="bg-base-100 p-10">
-        <h2 className="text-3xl font-bold text-center mb-6">お知らせ</h2>
+      <div className="bg-Beige p-5 lg:p-10 mt-3 lg:mt-15 text-base md:text-xl lg:text-xl animate-fade-in-bottom">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">お知らせ</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="card bg-white shadow-xl">
             <div className="card-body">
-              <h3 className="card-title">イベント情報</h3>
+              <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">イベント情報</h3>
               <p>12月4日 スマブラ大会！</p>
               <p>12月14日 プロジェクト最終発表！</p>
             </div>
           </div>
           <div className="card bg-white shadow-xl">
             <div className="card-body">
-              <h3 className="card-title">混雑状況</h3>
+              <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">混雑状況</h3>
               <p>現在の混雑状況は「普通」です。</p>
             </div>
           </div>
@@ -80,17 +50,16 @@ const MainPage = () => {
       </div>
 
       {/* Googleカレンダー */}
-      <div className="bg-base-200 p-10">
-        <h2 className="text-3xl font-bold text-center mb-6">Googleカレンダー</h2>
-        <iframe
-          src="https://calendar.google.com/calendar/embed?src=your_calendar_id&ctz=Asia%2FTokyo"
-          style={{ border: 0 }}
-          width="100%"
-          height="600"
-          frameBorder="0"
-          scrolling="no"
-          title="Google Calendar"
-        ></iframe>
+      <div className="bg-Beige p-5 lg:p-10 animate-fade-in-bottom">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">イベントカレンダー</h2>
+        <div className="overflow-hidden rounded-lg shadow-lg">
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=your_calendar_id&ctz=Asia%2FTokyo"
+            style={{ border: 0 }}
+            className="w-full h-[300px] md:h-[550px] lg:h-[750px]"
+            title="Calendar"
+          ></iframe>
+        </div>
       </div>
     </div>
   );

@@ -2,22 +2,32 @@ import React from "react";
 
 const AboutPage = () => {
   return (
-    <div className="p-10 bg-customBeige">
-      <h1 className="text-4xl font-bold text-center mb-10 text-customGreenDark">サロンについて</h1>
+    <div className="p-5 lg:p-10 pt-20 bg-Beige text-left font-sans">
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 text-center text-GreenDark animate-fade-in-fwd">サロンについて</h1>
+
+      <div className="breadcrumbs text-sm mb-8 animate-fade-in-fwd">
+        <ul>
+          <li><a href="/">ホーム</a></li>
+          <li><a>サロンについて</a></li>
+        </ul>
+      </div>
 
       {/* サロンの説明 */}
-      <div className="mb-10">
-        <h2 className="text-3xl font-bold mb-4 text-customGreenDark">サロンとは？</h2>
-        <p>大学生のための自由な交流と学びの空間です。</p>
+      <div className="mb-10 pt-4 text-base md:text-xl lg:text-xl animate-fade-in-bottom">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-GreenDark">コミュニケーションサロンラボ</h2>
+        <p className="break-words">
+          ネットワーク情報学部の学生や教員、卒業生が自由に出入りし、自由に過ごせる居場所づくりを目指すラボです。<br />
+          空間、動線、道具、イベントなどを考えて、コミュニケーションが広がる場所を生み出します。
+          将来的には、他のラボと連携し、近隣地域住民との交流への拡大も考えています。
+        </p>
       </div>
 
       {/* キャラクター紹介 */}
-      <div className="mb-10">
-        <h2 className="text-3xl font-bold mb-4 text-customGreenDark">キャラクター紹介</h2>
+      <div className="mb-10 pt-4">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-GreenDark animate-fade-in-bottom">キャラクター紹介</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
           {/* カード1 */}
-          <div className="card lg:card-side bg-base-100 shadow-xl">
+          <div className="card lg:card-side bg-base-100 shadow-xl animate-fade-in-bottom">
             <figure>
               <img
                 src="/salomal_skip.png"
@@ -25,8 +35,8 @@ const AboutPage = () => {
                 className="w-full h-auto object-contain"
               />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title text-customOlive">サロ丸</h2>
+            <div className="card-body text-base md:text-xl lg:text-xl">
+              <h2 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">サロ丸</h2>
               <p className="break-words">
                 ネカプくんに連れられてサロンにやってきた。
                 自由気ままな性格でのんびりやさん。
@@ -35,7 +45,7 @@ const AboutPage = () => {
                 イベントの時には色が変わることも・・・！？
               </p>
               <div className="mt-4">
-                <h3 className="text-lg font-bold text-customGreenDark">きほん情報</h3>
+                <h3 className="text-Olive text-lg md:text-xl lg:text-2xl">きほん情報</h3>
                 <ul className="list-disc list-inside break-words">
                   <li>しゅみ: おそうじ</li>
                   <li>とくぎ: おもちゃ作り</li>
@@ -48,7 +58,7 @@ const AboutPage = () => {
           </div>
 
           {/* カード2 */}
-          <div className="card lg:card-side bg-base-100 shadow-xl">
+          <div className="card lg:card-side bg-base-100 shadow-xl animate-fade-in-bottom">
             <figure>
               <img
                 src="/nekap_ya.png"
@@ -56,8 +66,8 @@ const AboutPage = () => {
                 className="w-full h-auto object-contain"
               />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title text-customOlive">ネカプくん</h2>
+            <div className="card-body text-base md:text-xl lg:text-xl">
+              <h2 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">ネカプくん</h2>
               <p className="break-words">
                 ネ学サロンに現れたなぞの生き物。
                 「はじめてネ学サロンで紙コップが使われた時にたましいが宿ったんだ！」と本人いわく。
@@ -66,7 +76,7 @@ const AboutPage = () => {
                 みんなのお兄ちゃん的存在として、頼りにされています。
               </p>
               <div className="mt-4">
-                <h3 className="text-lg font-bold text-customGreenDark">きほん情報</h3>
+                <h3 className="text-Olive text-lg md:text-xl lg:text-2xl">きほん情報</h3>
                 <ul className="list-disc list-inside break-words">
                   <li>しゅみ: お笑いを見ること</li>
                   <li>とくぎ: ゲーム制作</li>
@@ -81,52 +91,57 @@ const AboutPage = () => {
       </div>
 
       {/* サロンの設備 */}
-      <div className="mb-10">
-        <h2 className="text-3xl font-bold mb-4 text-customGreenDark">サロンの設備</h2>
+      <div className="mb-10 pt-4">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-GreenDark animate-fade-in-bottom">サロンの設備</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* カード1 */}
-          <div className="card lg:card-side bg-base-100 shadow-xl">
+          <div className="card lg:card-side bg-base-100 shadow-xl animate-fade-in-bottom">
             <figure>
               <img
                 src=""
                 alt="Album"
               />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title whitespace-nowrap">コミュニケーションサロン1</h2>
-              <p>みんなでワイワイ</p>
-              <div className="card-actions justify-end">
-                <button className="btn bg-customGreenLight text-white hover:bg-customGreenDark">もっと知る</button>
-              </div>
+            <div className="card-body text-base md:text-xl lg:text-xl">
+              <h2 className="card-title whitespace-nowrap text-Olive">コミュニケーションサロン1</h2>
+              <p>
+                みんなで話しながら、活動できる場所です。<br />
+                様々なイベントを不定期で開催しています！
+              </p>
+              {/* <div className="card-actions justify-end">
+                <button className="btn bg-GreenLight text-white hover:bg-GreenDark">もっと知る</button>
+              </div> */}
             </div>
           </div>
 
           {/* カード2 */}
-          <div className="card lg:card-side bg-base-100 shadow-xl">
+          <div className="card lg:card-side bg-base-100 shadow-xl animate-fade-in-bottom">
             <figure>
               <img
                 src=""
                 alt="Album"
               />
             </figure>
-            <div className="card-body">
-              <h2 className="card-title whitespace-nowrap">コミュニケーションサロン2</h2>
-              <p>みんな集中するスペース</p>
-              <div className="card-actions justify-end">
-                <button className="btn bg-customGreenLight text-white hover:bg-customGreenDark">もっと知る</button>
-              </div>
+            <div className="card-body text-base md:text-xl lg:text-xl">
+              <h2 className="card-title whitespace-nowrap text-Olive">コミュニケーションサロン2</h2>
+              <p>
+                静かに作業したい人向けの場所です。<br />
+                しっかり課題をやりたい人におすすめ！
+              </p>
+              {/* <div className="card-actions justify-end">
+                <button className="btn bg-GreenLight text-white hover:bg-GreenDark">もっと知る</button>
+              </div> */}
             </div>
           </div>
         </div>
       </div>
 
       {/* ラボ所属の人 */}
-      <div className="mb-10">
-        <h2 className="text-3xl font-bold mb-4 text-customGreenDark">ラボ所属の人</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
-
+      {/* <div className="mb-10 pt-4 text-base md:text-xl lg:text-xl">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-GreenDark animate-fade-in-bottom">ラボ所属の人</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center"> */}
           {/* カード1 */}
-          <div className="card bg-base-100 w-80 shadow-xl">
+          {/* <div className="card bg-base-100 w-80 shadow-xl animate-fade-in-bottom">
             <figure>
               <img src="" alt="メンバー1" />
             </figure>
@@ -134,10 +149,10 @@ const AboutPage = () => {
               <h2 className="card-title">メンバー1</h2>
               <p>プログラム: DS</p>
             </div>
-          </div>
+          </div> */}
 
           {/* カード2 */}
-          <div className="card bg-base-100 w-80 shadow-xl">
+          {/* <div className="card bg-base-100 w-80 shadow-xl animate-fade-in-bottom">
             <figure>
               <img src="" alt="メンバー2" />
             </figure>
@@ -145,10 +160,10 @@ const AboutPage = () => {
               <h2 className="card-title">メンバー2</h2>
               <p>プログラム: CD</p>
             </div>
-          </div>
+          </div> */}
 
           {/* カード3 */}
-          <div className="card bg-base-100 w-80 shadow-xl">
+          {/* <div className="card bg-base-100 w-80 shadow-xl animate-fade-in-bottom">
             <figure>
               <img src="" alt="メンバー3" />
             </figure>
@@ -156,10 +171,10 @@ const AboutPage = () => {
               <h2 className="card-title">メンバー3</h2>
               <p>プログラム: DS</p>
             </div>
-          </div>
+          </div> */}
 
           {/* カード4 */}
-          <div className="card bg-base-100 w-80 shadow-xl">
+          {/* <div className="card bg-base-100 w-80 shadow-xl animate-fade-in-bottom">
             <figure>
               <img src="" alt="メンバー4" />
             </figure>
@@ -167,10 +182,10 @@ const AboutPage = () => {
               <h2 className="card-title">メンバー4</h2>
               <p>プログラム: CD</p>
             </div>
-          </div>
+          </div> */}
 
           {/* カード5 */}
-          <div className="card bg-base-100 w-80 shadow-xl">
+          {/* <div className="card bg-base-100 w-80 shadow-xl animate-fade-in-bottom">
             <figure>
               <img src="" alt="メンバー5" />
             </figure>
@@ -178,10 +193,10 @@ const AboutPage = () => {
               <h2 className="card-title">メンバー5</h2>
               <p>プログラム: DS</p>
             </div>
-          </div>
+          </div> */}
 
           {/* カード6 */}
-          <div className="card bg-base-100 w-80 shadow-xl">
+          {/* <div className="card bg-base-100 w-80 shadow-xl animate-fade-in-bottom">
             <figure>
               <img src="" alt="メンバー6" />
             </figure>
@@ -189,32 +204,10 @@ const AboutPage = () => {
               <h2 className="card-title">メンバー5</h2>
               <p>プログラム: DS</p>
             </div>
-          </div>
-
-
-          {/* カード7 */}
-          <div className="card bg-base-100 w-80 shadow-xl">
-            <figure>
-              <img src="" alt="メンバー7" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">メンバー5</h2>
-              <p>プログラム: DS</p>
-            </div>
-          </div>
-
-          {/* カード8 */}
-          <div className="card bg-base-100 w-80 shadow-xl">
-            <figure>
-              <img src="" alt="メンバー8" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">メンバー5</h2>
-              <p>プログラム: DS</p>
-            </div>
-          </div>
+          </div> */}
+{/*
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
