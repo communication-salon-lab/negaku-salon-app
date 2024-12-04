@@ -16,11 +16,11 @@ const MainPage = () => {
 
         <div className="absolute top-1/4 z-30">
           {/* 右斜め上テキスト */}
-          <h1 className="text-5xl md:text-8xl md:ml-5 lg:text-9xl lg:ml-12 text-white font-klee mb-8 animate-tracking-in-expand">
+          <h1 className="text-5xl ml-5 md:text-8xl md:ml-5 lg:text-9xl lg:ml-12 text-white font-klee mb-8 animate-tracking-in-expand">
             未来をつくる、
           </h1>
           {/* 右斜め下テキスト */}
-          <h1 className="text-5xl ml-20 md:pl-10 md:text-8xl lg:text-9xl lg:ml-20 lg:pl-20 text-white font-klee animate-tracking-in-expand">
+          <h1 className="text-5xl ml-20 md:text-8xl lg:text-9xl lg:ml-20 lg:pl-20 text-white font-klee animate-tracking-in-expand">
             つながる場所
           </h1>
         </div>
@@ -30,7 +30,7 @@ const MainPage = () => {
       </div>
 
       {/* お知らせセクション */}
-      <div className="bg-Beige p-5 lg:p-10 mt-3 lg:mt-15 text-base md:text-xl lg:text-xl animate-fade-in-bottom">
+      <div className="bg-Beige p-5 mb-10 lg:p-10 mt-3 lg:mt-15 text-base md:text-xl lg:text-xl animate-fade-in-bottom">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">お知らせ</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="card bg-white shadow-xl">

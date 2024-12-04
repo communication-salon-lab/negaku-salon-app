@@ -51,7 +51,7 @@ const AboutPage = () => {
                   <li>とくぎ: おもちゃ作り</li>
                   <li>すきなもの: カフェオレ</li>
                   <li>にがてなもの: BADUI</li>
-                  <li className="whitespace-nowrap">たんじょうび: 3月6日（サロンの日））</li>
+                  <li className="break-words">たんじょうび: 3月6日</li>
                 </ul>
               </div>
             </div>
@@ -81,8 +81,8 @@ const AboutPage = () => {
                   <li>しゅみ: お笑いを見ること</li>
                   <li>とくぎ: ゲーム制作</li>
                   <li>すきなもの: コンポタ</li>
-                  <li>にがてなもの: ぐちゃぐちゃコード</li>
-                  <li className="whitespace-nowrap">たんじょうび: 5月2日（紙コップの日）</li>
+                  <li>にがてなもの: 乱雑なコード</li>
+                  <li className="break-words">たんじょうび: 5月2日</li>
                 </ul>
               </div>
             </div>
@@ -98,7 +98,7 @@ const AboutPage = () => {
           <div className="card lg:card-side bg-base-100 shadow-xl animate-fade-in-bottom">
             <figure>
               <img
-                src=""
+                src="/salon1.jpg"
                 alt="Album"
               />
             </figure>
@@ -118,7 +118,7 @@ const AboutPage = () => {
           <div className="card lg:card-side bg-base-100 shadow-xl animate-fade-in-bottom">
             <figure>
               <img
-                src=""
+                src="/salon2.jpg"
                 alt="Album"
               />
             </figure>
