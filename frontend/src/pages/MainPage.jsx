@@ -16,11 +16,11 @@ const MainPage = () => {
 
         <div className="absolute top-1/4 z-30">
           {/* 右斜め上テキスト */}
-          <h1 className="text-5xl ml-5 md:text-8xl md:ml-5 lg:text-9xl lg:ml-12 text-white font-klee mb-8 animate-tracking-in-expand">
+          <h1 className="text-5xl ml-5 md:text-7xl md:ml-5 lg:text-8xl lg:ml-12 text-white font-klee mb-8 animate-tracking-in-expand">
             未来をつくる、
           </h1>
           {/* 右斜め下テキスト */}
-          <h1 className="text-5xl ml-20 md:text-8xl lg:text-9xl lg:ml-20 lg:pl-20 text-white font-klee animate-tracking-in-expand">
+          <h1 className="text-5xl ml-12 md:text-7xl lg:text-8xl lg:ml-20 lg:pl-20 text-white font-klee animate-tracking-in-expand">
             つながる場所
           </h1>
         </div>
@@ -54,7 +54,7 @@ const MainPage = () => {
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">イベントカレンダー</h2>
         <div className="overflow-hidden rounded-lg shadow-lg">
           <iframe
-            src="https://calendar.google.com/calendar/embed?src=your_calendar_id&ctz=Asia%2FTokyo"
+            src="https://calendar.google.com/calendar/embed?src=negakusalon2024%40gmail.com&ctz=UTC"
             style={{ border: 0 }}
             className="w-full h-[300px] md:h-[550px] lg:h-[750px]"
             title="Calendar"
