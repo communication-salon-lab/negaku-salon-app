@@ -1,0 +1,5 @@
+runtime: Docker
+build:
+  dockerfilePath: Dockerfile
+port: 3500
+startCommand: bundle exec rails s -b 0.0.0.0 -p 3500
