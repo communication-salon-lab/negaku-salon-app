@@ -1,0 +1,5 @@
+runtime: Docker
+build:
+  dockerfilePath: Dockerfile
+port: 8000
+startCommand: npm start
