@@ -1,5 +1,0 @@
-runtime: Docker
-build:
-  dockerfilePath: Dockerfile
-port: 8000
-startCommand: "sh -c 'serve -s build -l tcp://0.0.0.0:8000'"
