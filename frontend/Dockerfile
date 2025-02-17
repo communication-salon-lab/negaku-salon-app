@@ -1,5 +1,5 @@
 # ベースイメージ
-FROM --platform=linux/amd64 node:21.5.0
+FROM --platform=linux/amd64 node:18
 
 # 作業ディレクトリを変更
 WORKDIR /app
