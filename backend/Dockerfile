@@ -1,5 +1,5 @@
 # ベースイメージ
-FROM --platform=linux/amd64 ruby:3.2.2-bullseye
+FROM --platform=linux/amd64 ruby:3.1
 
 # パッケージインストール
 RUN apt-get update -qq && apt-get install -y nodejs default-mysql-client
