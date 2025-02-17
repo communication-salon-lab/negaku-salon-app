@@ -13,7 +13,7 @@ COPY . .
 
 # Reactのビルド
 RUN yarn build
-RUN yarn global add serve
+RUN npm install -g serve
 
 # ポートの公開
 EXPOSE 8000
