@@ -19,4 +19,4 @@ RUN npm install -g serve
 EXPOSE 8000
 
 # Reactを起動するコマンド
-CMD ["npx", "serve", "-s", "build", "-l", "tcp://0.0.0.0:8000"]
+CMD ["serve", "-s", "build", "-l", "tcp://0.0.0.0:8000"]
