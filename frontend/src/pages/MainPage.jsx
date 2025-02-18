@@ -43,7 +43,8 @@ const MainPage = () => {
           <div className="card bg-white shadow-xl">
             <div className="card-body">
               <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">混雑状況</h3>
-              <p>現在の混雑状況は「普通」です。</p>
+              {/* <p>現在の混雑状況は「普通」です。</p> */}
+              <p>現在は、春期休暇のため利用できません。</p>
             </div>
           </div>
         </div>
