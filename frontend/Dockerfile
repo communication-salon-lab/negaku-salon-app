@@ -1,7 +1,7 @@
 # ベースイメージ
 FROM --platform=linux/amd64 node:18
 
-# 作業ディレクトリを変更
+# 作業ディレクトリの設定
 WORKDIR /app
 
 # パッケージインストール
@@ -11,12 +11,9 @@ RUN yarn install --frozen-lockfile
 # アプリケーションのコードをコピー
 COPY . .
 
-# Reactのビルド
-RUN yarn build
-RUN npm install -g serve
-
-# ポートの公開
+# 開発サーバーのポート
+ENV PORT=8000
 EXPOSE 8000
 
-# Reactを起動するコマンド
-CMD ["serve", "-s", "build", "-l", "tcp://0.0.0.0:8000"]
+# 開発用コマンド（ホットリロードなどが有効）
+CMD ["yarn", "start"]
