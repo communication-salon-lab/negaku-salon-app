@@ -38,6 +38,7 @@ const MainPage = () => {
               <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">イベント情報</h3>
               <p>12月4日 スマブラ大会！</p>
               <p>12月14日 プロジェクト最終発表！</p>
+              <p>1月14日-1月22日 オープンラボの実施</p>
             </div>
           </div>
           <div className="card bg-white shadow-xl">
@@ -46,6 +47,13 @@ const MainPage = () => {
               {/* <p>現在の混雑状況は「普通」です。</p> */}
               <p>現在は、春期休暇のため利用できません。</p>
             </div>
+          </div>
+          <div className="card lg:card-side bg-base-100 shadow-xl max-w-md mx-auto md:col-span-2">
+            <img
+              src="/nagesen.png"
+              alt="さろまる"
+              className="w-full h-auto object-contain"
+            />
           </div>
         </div>
       </div>
