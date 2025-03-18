@@ -1,5 +1,5 @@
 import React from "react";
-import PeopeleCount from "/app/src/pages/PeopleCount";
+import PeopleCount from "/app/src/pages/PeopleCount";
 
 const MainPage = () => {
   return (
@@ -46,7 +46,7 @@ const MainPage = () => {
             <div className="card-body">
               <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">混雑状況</h3>
               {/* <p>現在の混雑状況は「普通」です。</p> */}
-              <PeopeleCount />
+              <PeopleCount />
             </div>
           </div>
           <div className="card lg:card-side bg-base-100 shadow-xl max-w-md mx-auto md:col-span-2">
