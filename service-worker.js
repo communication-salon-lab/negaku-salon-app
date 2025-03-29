@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/negaku-salon-app/precache-manifest.70f1a809e086c8506e87d617d99ba187.js"
+  "/negaku-salon-app/precache-manifest.ec07e0ec5a63a0a7917c0ef4aa2785ec.js"
 );
 
 self.addEventListener('message', (event) => {

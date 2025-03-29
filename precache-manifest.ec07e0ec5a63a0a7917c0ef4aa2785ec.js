@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "90b034f3f3463db3a138e5c9aa8362fb",
+    "revision": "99e8a19644a682484f3f691f1e911d33",
     "url": "/negaku-salon-app/index.html"
   },
   {
-    "revision": "33c6336367c8b817c5a8",
+    "revision": "3b7db5557b558b4f5cba",
     "url": "/negaku-salon-app/static/css/main.cd41c07e.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/negaku-salon-app/static/js/3.b75b75f3.chunk.js"
   },
   {
-    "revision": "33c6336367c8b817c5a8",
-    "url": "/negaku-salon-app/static/js/main.9cdd9cec.chunk.js"
+    "revision": "3b7db5557b558b4f5cba",
+    "url": "/negaku-salon-app/static/js/main.b2edb0d4.chunk.js"
   },
   {
     "revision": "9ebca7f069dd971bbd91",
