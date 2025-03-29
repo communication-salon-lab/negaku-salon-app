@@ -1,5 +1,5 @@
 import React from "react";
-import PeopleCount from "/app/src/pages/PeopleCount";
+import PeopleCount from "./PeopleCount";
 
 const MainPage = () => {
   return (
