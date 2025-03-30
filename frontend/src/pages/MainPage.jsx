@@ -37,9 +37,7 @@ const MainPage = () => {
           <div className="card bg-white shadow-xl">
             <div className="card-body">
               <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">イベント情報</h3>
-              <p>12月4日 スマブラ大会！</p>
-              <p>12月14日 プロジェクト最終発表！</p>
-              <p>1月14日-1月22日 オープンラボの実施</p>
+              <p>4月10日 授業開始（ネ学サロンスタート）</p>
             </div>
           </div>
           <div className="card bg-white shadow-xl">
