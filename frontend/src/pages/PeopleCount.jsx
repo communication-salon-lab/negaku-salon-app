@@ -1,6 +1,16 @@
 import React, { useState, useEffect} from "react";
 
 const PeopleCount = () => {
+  const now = new Date();
+  const day = now.getDate(); // 0は日曜日
+  const hour = now.getHours();
+  const isOpen = day >= 1 && day <= 5 && hour >= 9 && hour < 21; // 平日の9時から21時のフラグ
+
+  if (!isOpen) {
+    return <p>営業時間外</p>
+  }
+
+
   const [peopleCount, setPeopleCount] = useState(0);
   const [error, setError] = useState(null);
 
@@ -8,7 +18,7 @@ const PeopleCount = () => {
     try {
       const response = await fetch("https://amvfd3xhzi.execute-api.ap-northeast-1.amazonaws.com/dev");
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("エラー:ネットワーク応答が不正です");
       }
       const data = await response.json();
       // API Gateway の設定により、data.body が存在する場合と存在しない場合があるので対応
@@ -22,7 +32,7 @@ const PeopleCount = () => {
       }
       setPeopleCount(payload.count);
     } catch (err) {
-      console.error("Failed to fetch people count:", err);
+      console.error("人数の取得に失敗しています:", err);
       setError(err);
     }
   };
@@ -30,19 +40,17 @@ const PeopleCount = () => {
   useEffect(() => {
     // 人数を取得
     fetchPeopleCount();
-    // 10秒ごとに最新データを更新
-    const interval = setInterval(fetchPeopleCount, 10000);
+    // 1分ごとに最新データを更新
+    const interval = setInterval(fetchPeopleCount, 60000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div>
       {error ? (
-        <p className="text-red-500">現在メンテナンス中です</p>
-      ) : peopleCount !== null ? (
-        <p>現在サロンは {peopleCount} 人！</p>
+        <p className="text-red-500">現在メンテナンス中です..</p>
       ) : (
-        <p>読み込み中…</p>
+        <p>現在サロン1は {peopleCount} 人です</p>
       )}
     </div>
   );
