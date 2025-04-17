@@ -1,22 +1,23 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 const PeopleCount = () => {
+  const [peopleCount, setPeopleCount] = useState(0);
+  const [error, setError] = useState(null);
+
   const now = new Date();
   const day = now.getDay(); // 0は日曜日
   const hour = now.getHours();
   const isOpen = day >= 1 && day <= 5 && hour >= 9 && hour < 21; // 平日の9時から21時のフラグ
 
   if (!isOpen) {
-    return <p>営業時間外</p>
+    return <p>営業時間外</p>;
   }
-
-
-  const [peopleCount, setPeopleCount] = useState(0);
-  const [error, setError] = useState(null);
 
   const fetchPeopleCount = async () => {
     try {
-      const response = await fetch("https://amvfd3xhzi.execute-api.ap-northeast-1.amazonaws.com/dev");
+      const response = await fetch(
+        "https://amvfd3xhzi.execute-api.ap-northeast-1.amazonaws.com/dev"
+      );
       if (!response.ok) {
         throw new Error("エラー:ネットワーク応答が不正です");
       }
