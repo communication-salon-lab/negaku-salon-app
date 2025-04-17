@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 
 const PeopleCount = () => {
   const now = new Date();
-  const day = now.getDate(); // 0は日曜日
+  const day = now.getDay(); // 0は日曜日
   const hour = now.getHours();
   const isOpen = day >= 1 && day <= 5 && hour >= 9 && hour < 21; // 平日の9時から21時のフラグ
 
@@ -40,9 +40,9 @@ const PeopleCount = () => {
   useEffect(() => {
     // 人数を取得
     fetchPeopleCount();
-    // 1分ごとに最新データを更新
-    const interval = setInterval(fetchPeopleCount, 60000);
-    return () => clearInterval(interval);
+    // 3分ごとに最新データを更新
+    const timer = setInterval(fetchPeopleCount, 180000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
