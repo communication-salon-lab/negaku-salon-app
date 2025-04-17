@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 const PeopleCount = () => {
-  const [peopleCount, setPeopleCount] = useState(0);
-  const [error, setError] = useState(null);
-
   const now = new Date();
   const day = now.getDay(); // 0は日曜日
   const hour = now.getHours();
   const isOpen = day >= 1 && day <= 5 && hour >= 9 && hour < 21; // 平日の9時から21時のフラグ
 
-  if (!isOpen) {
-    return <p>営業時間外</p>;
-  }
+  const [peopleCount, setPeopleCount] = useState(0);
+  const [error, setError] = useState(null);
 
   const fetchPeopleCount = async () => {
     try {
@@ -39,12 +35,17 @@ const PeopleCount = () => {
   };
 
   useEffect(() => {
+    if (!isOpen) return; // 営業時間外は何もしない
     // 人数を取得
     fetchPeopleCount();
     // 3分ごとに最新データを更新
     const timer = setInterval(fetchPeopleCount, 180000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isOpen]);
+
+  if (!isOpen) {
+    return <p>営業時間外</p>;
+  }
 
   return (
     <div>
