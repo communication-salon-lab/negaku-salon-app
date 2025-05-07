@@ -49,31 +49,25 @@ const MainPage = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
         {/* 1枚目 */}
-          <div className="card-body p-5">
-            <img
-              src="/nagesen.png"
-              alt="さろまる"
-              className="w-full h-auto object-contain"
-            />
-          </div>
+          <img
+            src="/nagesen.png"
+            alt="さろまる"
+            className="m-4 w-full h-auto object-contain"
+          />
         {/* 2枚目 */}
-          <div className="card-body p-5">
-            <img
-              src="/price1.png"
-              alt="投げ銭の記録"
-              className="w-full h-auto object-contain"
-            />
-          </div>
+          <img
+            src="/price1.png"
+            alt="投げ銭の記録"
+            className="m-4 w-full h-auto object-contain"
+          />
         {/* 3枚目 */}
-          <div className="card-body p-5">
-            <img
-              src="/price2.png"
-              alt="投げ銭の記録2"
-              className="w-full h-auto object-contain"
-            />
-          </div>
+          <img
+            src="/price2.png"
+            alt="投げ銭の記録2"
+            className="m-4 w-full h-auto object-contain"
+          />
       </div>
 
       {/* Googleカレンダー */}
