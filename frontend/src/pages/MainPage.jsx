@@ -48,23 +48,23 @@ const MainPage = () => {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <img
-              src="/nagesen.png"
-              alt="さろまる"
-              className="w-full h-auto object-contain"
-            />
-            <img
-              src="/price1.png"
-              alt="投げ銭の記録"
-              className="w-full h-auto object-contain"
-            />
-            <img
-              src="/price2.png"
-              alt="投げ銭の記録2"
-              className="w-full h-auto object-contain"
-            />
-        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <img
+          src="/nagesen.png"
+          alt="さろまる"
+          className="w-full h-auto object-contain"
+        />
+        <img
+          src="/price1.png"
+          alt="投げ銭の記録"
+          className="w-full h-auto object-contain"
+        />
+        <img
+          src="/price2.png"
+          alt="投げ銭の記録2"
+          className="w-full h-auto object-contain"
+        />
       </div>
 
       {/* Googleカレンダー */}
