@@ -49,24 +49,21 @@ const MainPage = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
-      {/* 1枚目 */}
+      <div className="grid grid-cols-1 md:grid-cols-3 mt-2">
         <img
           src="/nagesen.png"
           alt="さろまる"
-          className="my-4 w-full h-auto object-contain"
+          className="mx-4 my-2 w-full h-auto object-contain"
         />
-      {/* 2枚目 */}
         <img
           src="/price1.png"
           alt="投げ銭の記録"
-          className="my-4 w-full h-auto object-contain"
+          className="mx-4 my-2 w-full h-auto object-contain"
         />
-      {/* 3枚目 */}
         <img
           src="/price2.png"
           alt="投げ銭の記録2"
-          className="my-4 w-full h-auto object-contain"
+          className="mx-4 my-2 w-full h-auto object-contain"
         />
       </div>
 
