@@ -47,7 +47,8 @@ const MainPage = () => {
               <PeopleCount />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <img
               src="/nagesen.png"
               alt="さろまる"
@@ -63,7 +64,6 @@ const MainPage = () => {
               alt="投げ銭の記録2"
               className="w-full h-auto object-contain"
             />
-          </div>
         </div>
       </div>
 
