@@ -12,14 +12,14 @@ const MainPage = () => {
             name="description"
             content="専修大学ネットワーク情報学部コミュニケーションサロンラボの紹介ページ。"
           />
-          <link rel="canonical" href="https://your-domain.com/about" />
+          <link rel="canonical" href="https://communication-salon.com/about" />
           <meta property="og:title" content="コミュニケーションサロンラボ｜サロンについて" />
           <meta
             property="og:description"
             content="学生・教員・卒業生が自由に集まれる居場所作りラボ。"
           />
-          <meta property="og:url" content="https://your-domain.com/about" />
-          <meta property="og:image" content="https://your-domain.com/og-image-about.png" />
+          <meta property="og:url" content="https://communication-salon.com/about" />
+          <meta property="og:image" content="https://communication-salon.com/og-image-about.png" />
         </Helmet>
         <div className="relative w-full h-screen animate-fade-in-fwd">
           {/* 背景画像 */}
