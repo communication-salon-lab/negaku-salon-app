@@ -52,7 +52,7 @@ const PeopleCount = () => {
       {error ? (
         <p className="text-red-500">現在メンテナンス中です..</p>
       ) : (
-        <p>サロン1は、{peopleCount} 人</p>
+        <p>サロン1は、現在 {peopleCount} 人</p>
       )}
     </div>
   );
