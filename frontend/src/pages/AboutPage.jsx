@@ -10,14 +10,14 @@ const AboutPage = () => {
           name="description"
           content="専修大学ネットワーク情報学部コミュニケーションサロンラボの紹介ページ。"
         />
-        <link rel="canonical" href="https://your-domain.com/about" />
+        <link rel="canonical" href="https://communication-salon.com/about" />
         <meta property="og:title" content="コミュニケーションサロンラボ｜サロンについて" />
         <meta
           property="og:description"
-          content="学生・教員・卒業生が自由に集まれる居場所作りラボ。"
+          content="学生・教員・卒業生が自由に集まれる居場所を作るラボ。"
         />
-        <meta property="og:url" content="https://your-domain.com/about" />
-        <meta property="og:image" content="https://your-domain.com/og-image-about.png" />
+        <meta property="og:url" content="https://communication-salon.com/" />
+        <meta property="og:image" content="https://communication-salon.com/og-image-about.png" />
       </Helmet>
       <div className="p-5 lg:p-10 pt-20 bg-Beige text-left font-sans">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 text-center text-GreenDark animate-fade-in-fwd">サロンについて</h1>
