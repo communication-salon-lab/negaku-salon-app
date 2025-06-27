@@ -54,7 +54,12 @@ const MainPage = () => {
             <div className="card bg-white shadow-xl">
               <div className="card-body">
                 <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">イベント情報</h3>
-                <p>4月10日 授業開始（ネ学サロンスタート）</p>
+                <p>5月20日 ボードゲームの日</p>
+                <p>5月29日 入門プログラミング相談会</p>
+                <p>6月6日 映画上映会（コナン）</p>
+                <p>6月13日 映画上映会（LA LA LAND）</p>
+                <p>6月30日 ~ 7月4日 カウンター（相談会）</p>
+                <p>7月4日 プロジェクト交流会</p>
               </div>
             </div>
             <div className="card bg-white shadow-xl">
