@@ -83,7 +83,7 @@ const MainPage = () => {
           {/* 2枚目 */}
             <div className="p-4">
               <img
-                src="/price1.png"
+                src="/price2.png"
                 alt="投げ銭の記録"
                 className="w-full h-auto object-contain"
               />
@@ -91,8 +91,8 @@ const MainPage = () => {
           {/* 3枚目 */}
             <div className="p-4">
               <img
-                src="/price2.png"
-                alt="投げ銭の記録2"
+                src="/price1.png"
+                alt="投げ銭_2024"
                 className="w-full h-auto object-contain"
               />
             </div>
