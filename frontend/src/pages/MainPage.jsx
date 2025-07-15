@@ -24,7 +24,7 @@ const MainPage = () => {
         <div className="relative w-full h-screen animate-fade-in-fwd">
           {/* 背景画像 */}
           <img
-            src="/salon.jpg"
+            src="/salon3.jpg"
             alt="サロン風景"
             className="absolute inset-0 w-full h-full object-cover z-0"
           />
