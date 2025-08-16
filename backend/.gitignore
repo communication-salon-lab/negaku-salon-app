@@ -38,3 +38,4 @@
 .env.local
 master.key
 .DS_Store
+.env.production
