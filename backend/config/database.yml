@@ -12,15 +12,18 @@
 default: &default
   adapter: mysql2
   encoding: utf8mb4
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: <%= ENV.fetch("DB_NAME") %>
-  username: <%= ENV.fetch("DB_USERNAME") %>
-  password: <%= ENV.fetch("DB_PASSWORD") %>
-  host: <%= ENV.fetch("DB_HOST") %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+  username: <%= ENV["DB_USERNAME"] || "root" %>
+  password: <%= ENV["DB_PASSWORD"] || "password" %>
+  host: <%= ENV["DB_HOST"] || "db" %>
 
 development:
   <<: *default
-  database: app_development
+  database: <%= ENV["DB_NAME"] || "salon_development" %>
+
+production:
+  <<: *default
+  database: <%= ENV["DB_NAME"] || "salon_production" %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -49,6 +52,4 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: <%= ENV.fetch("salon-rails-api-db") %> # RDSで作成したデータベース名
+

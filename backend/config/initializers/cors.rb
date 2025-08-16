@@ -15,12 +15,13 @@
 #   end
 # end
 
+# backend/config/initializers/cors.rb
+# https://nnxmjtjtip.ap-northeast-1.awsapprunner.com/
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
-    allow do
-      origins "localhost:8000", "https://www.本番環境のURLがあるならここにも追加"
-
-      resource "*",
-        headers: :any,
-        methods: [:get, :post, :put, :patch, :delete, :options, :head]
-    end
+  allow do
+    origins ENV.fetch('CORS_ORIGIN', 'http://localhost:8000')
+    resource '*',
+            headers: :any,
+            methods: %i[get post put patch delete options head]
   end
+end
