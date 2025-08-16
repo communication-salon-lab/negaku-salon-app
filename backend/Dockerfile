@@ -23,7 +23,7 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
 # ポートの公開
-EXPOSE 3500
+EXPOSE 8080
 
 # Railsサーバーを起動するコマンド
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0", "-p", "8080"]
