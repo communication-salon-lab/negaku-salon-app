@@ -6,13 +6,31 @@ build:
     - name: BUNDLE_WITHOUT
       value: "development:test"
   commands:
-    - bundle config set deployment 'true'
-    - bundle install -j4
+    pre-build:
+      - yum -y install mariadb-devel gcc make
+      - bundle config set force_ruby_platform 'true'
+    build:
+      - bundle install -j4
 
 run:
   runtime-version: 3.1.7
-  pre-run:
-    - dnf -y install mariadb-connector-c mariadb-connector-c-devel gcc make pkgconf-pkg-config
   command: bundle exec rails server -b 0.0.0.0 -p 8080
   network:
     port: 8080
+  env:
+    - name: RAILS_ENV
+      value: "production"
+    - name: RAILS_LOG_TO_STDOUT
+      value: "1"
+    - name: RAILS_SERVE_STATIC_FILES
+      value: "1"
+    - name: PORT
+      value: "8080"
+    - name: DATABASE_URL
+      value: "mysql2://admin:negakusalon2024@database-1.cj8kyw6go3j4.ap-northeast-1.rds.amazonaws.com:3306/salon_production"
+    - name: RAILS_MASTER_KEY
+      value: "1aa6dd3988642770fd152d0ce48ce2c1"
+    - name: SECRET_KEY_BASE
+      value: "87435277267c3e8e13fcb485c774f3735b8c672a6e36cf3dc3e236ef90ce49e3ce566ad4ce8162d5e253e88e3355cfd0f1b60fb3f9da79b502cea24ba75ef2bf"
+    - name: CORS_ORIGIN
+      value: "https://nnxmjtjtip.ap-northeast-1.awsapprunner.com"
