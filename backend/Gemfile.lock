@@ -88,9 +88,6 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     date (3.4.0)
-    debug (1.9.2)
-      irb (~> 1.10)
-      reline (>= 0.3.8)
     dotenv (3.1.8)
     dotenv-rails (3.1.8)
       dotenv (= 3.1.8)
@@ -130,6 +127,8 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
+    nokogiri (1.16.7-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
     psych (5.2.0)
@@ -192,6 +191,7 @@ GEM
     zeitwerk (2.6.18)
 
 PLATFORMS
+  arm64-darwin-24
   x86_64-linux
 
 DEPENDENCIES
@@ -208,4 +208,4 @@ RUBY VERSION
    ruby 3.1.6p260
 
 BUNDLED WITH
-   2.5.23
+   2.6.9
