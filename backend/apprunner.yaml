@@ -1,0 +1,18 @@
+version: 1.0
+runtime: ruby31
+
+build:
+  commands:
+    pre-build:
+      - dnf -y install gcc gcc-c++ make redhat-rpm-config ruby-devel mariadb-connector-c-devel
+      - gem install bundler -v 2.5.11
+    build:
+      - bundle config set without 'development test'
+      - bundle install -j4
+      - RAILS_ENV=production bundle exec rails assets:precompile
+
+run:
+  runtime-version: 3.1.7
+  command: bundle exec rails server -b 0.0.0.0 -p 8080
+  network:
+    port: 8080
