@@ -36,5 +36,5 @@
 
 # Ignore .env.local file
 .env.local
-
+master.key
 .DS_Store
