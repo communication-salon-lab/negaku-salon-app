@@ -39,3 +39,4 @@
 master.key
 .DS_Store
 .env.production
+/vendor/bundle
