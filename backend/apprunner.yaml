@@ -5,33 +5,31 @@ build:
   env:
     - name: BUNDLE_WITHOUT
       value: "development:test"
+    - name: BUNDLE_DEPLOYMENT
+      value: "1"
     - name: BUNDLE_FORCE_RUBY_PLATFORM
-      value: "true"
+      value: "1"
   commands:
+    pre-build:
+      - rm -f .ruby-version || true
+      - bundle lock --add-platform x86_64-linux || true
     build:
-      - dnf -y install gcc make pkgconf-pkg-config \
-          libyaml-devel zlib-devel \
-          mariadb-connector-c mariadb-connector-c-devel
+      - dnf -y install \
+          gcc make patch redhat-rpm-config git pkgconf-pkg-config \
+          libyaml-devel \
+          mariadb-connector-c mariadb-connector-c-devel \
+          zlib-devel openssl-devel readline-devel
       - gem install bundler -v 2.6.9
-      - bundle config set path 'vendor/bundle'
-      - bundle config set deployment 'true'
-      - bundle config set without 'development test'
-      - bundle config set force_ruby_platform 'true'
-      - bundle _2.6.9_ install -j4
+      - bundle _2.6.9_ config set path 'vendor/bundle'
+      - bundle _2.6.9_ install --jobs 4 --retry 3
+    post-build:
       - bundle _2.6.9_ exec rake assets:precompile || true
 
 run:
   runtime-version: 3.1.7
-
-  pre-run:
-    - dnf -y install libyaml mariadb-connector-c
-    - gem install bundler -v 2.6.9
-
   command: bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080
-
   network:
     port: 8080
-
   env:
     - name: RAILS_ENV
       value: "production"
