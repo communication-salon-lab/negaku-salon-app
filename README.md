@@ -21,6 +21,7 @@ DB_NAME=salon_development
 RAILS_MASTER_KEY=********
 ```
 
+
 ```bash
 touch frontend/.env.local
 ```
