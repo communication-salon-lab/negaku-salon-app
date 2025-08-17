@@ -15,15 +15,11 @@ build:
       value: "--with-mysql-config=/usr/bin/mysql_config"
 
   commands:
-    pre-build:
-      - rm -f backend/.ruby-version || true
-
     build:
       - yum -y install libyaml-devel mariadb-devel gcc make pkgconfig
       - gem install bundler -v 2.6.9
       - bundle _2.6.9_ config set path 'vendor/bundle'
       - bundle _2.6.9_ install --jobs 4 --retry 3
-      - rm -f .ruby-version || true
 
     post-build:
       - bundle _2.6.9_ exec rake assets:precompile || true
