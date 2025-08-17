@@ -9,31 +9,19 @@ build:
       value: "1"
     - name: BUNDLE_FORCE_RUBY_PLATFORM
       value: "1"
-    - name: BUNDLE_BUILD__PSYCH
-      value: "--with-libyaml-dir=/usr"
   commands:
     pre-build:
-      - rm -f .ruby-version || true
-      - bundle lock --add-platform x86_64-linux || true
+      - cd backend && bundle lock --add-platform x86_64-linux || true
     build:
-      - yum -y install yum-utils amazon-linux-extras
-      - yum clean metadata
-      - yum -y groupinstall "Development Tools"
-      - yum -y install \
-          libyaml libyaml-devel \
-          zlib-devel \
-          mariadb-connector-c mariadb-connector-c-devel \
-          openssl-devel readline-devel git
-      - gem install bundler -v 2.6.9
-      - bundle _2.6.9_ config set path 'vendor/bundle'
-      - bundle _2.6.9_ install --jobs 4 --retry 3
+      - cd backend && gem install bundler -v 2.6.9
+      - cd backend && bundle _2.6.9_ config set path 'vendor/bundle'
+      - cd backend && bundle _2.6.9_ install --jobs 4 --retry 3
     post-build:
-      - bundle _2.6.9_ exec rake assets:precompile || true
-
+      - cd backend && bundle _2.6.9_ exec rake assets:precompile || true
 
 run:
   runtime-version: 3.1.7
-  command: bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080
+  command: bash -lc "cd backend && bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080"
   network:
     port: 8080
   env:
