@@ -9,10 +9,8 @@ build:
     pre-build:
       - yum -y install mariadb-devel gcc make pkgconfig || true
       - rm -f .ruby-version
-      - gem install bundler -v "~> 2.5"
     build:
-      - bundle config set deployment 'true'
-      - bundle install -j4
+      - "true"
 
 run:
   runtime-version: 3.1.7
