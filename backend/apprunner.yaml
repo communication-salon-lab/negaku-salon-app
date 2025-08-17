@@ -15,18 +15,21 @@ build:
       value: "--with-mysql-config=/usr/bin/mysql_config"
 
   commands:
+    pre-build:
+      - rm -f backend/.ruby-version || true
+      - gem install bundler -v 2.6.9 || true
+
     build:
       - yum -y install libyaml-devel mariadb-devel gcc make pkgconfig
-      - gem install bundler -v 2.6.9
-      - bundle _2.6.9_ config set path 'vendor/bundle'
-      - bundle _2.6.9_ install --jobs 4 --retry 3
+      - cd backend && bundle _2.6.9_ config set path 'vendor/bundle'
+      - cd backend && bundle _2.6.9_ install --jobs 4 --retry 3
 
     post-build:
-      - bundle _2.6.9_ exec rake assets:precompile || true
+      - cd backend && RAILS_ENV=production bundle _2.6.9_ exec rake assets:precompile
 
 run:
   runtime-version: 3.1.7
-  command: bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080
+  command: bash -lc "cd backend && bundle _2.6.9_ exec rails db:migrate && bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080"
   network:
     port: 8080
   env:
