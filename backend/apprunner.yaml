@@ -9,14 +9,13 @@ build:
     pre-build:
       - yum -y install mariadb-devel gcc make pkgconfig || true
       - rm -f .ruby-version
-      - gem uninstall -ax bundler || true
-      - gem install bundler -v 2.6.9
       - bundle lock --add-platform ruby
       - bundle lock --add-platform x86_64-linux
       - bundle config set path 'vendor/bundle'
       - bundle config set deployment 'true'
       - bundle config set force_ruby_platform 'true'
     build:
+      - gem install bundler -v 2.6.9
       - bundle _2.6.9_ install -j4
     post-build:
       - bundle _2.6.9_ exec rake assets:precompile || true
