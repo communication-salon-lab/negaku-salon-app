@@ -16,20 +16,18 @@ build:
 
   commands:
     pre-build:
-      - rm -f .ruby-version || true
-      - gem install bundler -v 2.6.9 || true
-
+      - rm -f backend/.ruby-version || true
     build:
       - yum -y install libyaml-devel mariadb-devel gcc make pkgconfig
-      - bundle _2.6.9_ config set path 'vendor/bundle'
-      - bundle _2.6.9_ install --jobs 4 --retry 3
-
+      - bundle config set path 'vendor/bundle'
+      - bundle install --jobs 4 --retry 3
+      - rm -f .ruby-version || true
     post-build:
-      - bundle _2.6.9_ exec rake assets:precompile || true
+      - bundle exec rake assets:precompile || true
 
 run:
   runtime-version: 3.1.7
-  command: bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080
+  command: bundle exec rails server -b 0.0.0.0 -p 8080
   network:
     port: 8080
   env:
