@@ -5,23 +5,39 @@ build:
   env:
     - name: BUNDLE_WITHOUT
       value: "development:test"
+    - name: BUNDLE_FORCE_RUBY_PLATFORM
+      value: "true"
   commands:
-    pre-build:
-      - yum -y install mariadb-devel gcc make pkgconfig || true
-      - rm -f .ruby-version
-      - bundle lock --add-platform ruby
-      - bundle lock --add-platform x86_64-linux
+    build:
+      - dnf -y install gcc make pkgconf-pkg-config \
+          libyaml-devel zlib-devel \
+          mariadb-connector-c mariadb-connector-c-devel
+      - gem install bundler -v 2.6.9
       - bundle config set path 'vendor/bundle'
       - bundle config set deployment 'true'
+      - bundle config set without 'development test'
       - bundle config set force_ruby_platform 'true'
-    build:
-      - gem install bundler -v 2.6.9
       - bundle _2.6.9_ install -j4
-    post-build:
       - bundle _2.6.9_ exec rake assets:precompile || true
 
 run:
   runtime-version: 3.1.7
+
+  pre-run:
+    - dnf -y install libyaml mariadb-connector-c
+    - gem install bundler -v 2.6.9
+
   command: bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080
+
   network:
     port: 8080
+
+  env:
+    - name: RAILS_ENV
+      value: "production"
+    - name: RAILS_LOG_TO_STDOUT
+      value: "1"
+    - name: RAILS_SERVE_STATIC_FILES
+      value: "1"
+    - name: PORT
+      value: "8080"
