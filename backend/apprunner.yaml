@@ -9,15 +9,17 @@ build:
       value: "1"
     - name: BUNDLE_FORCE_RUBY_PLATFORM
       value: "1"
+    - name: BUNDLE_BUILD__PSYCH
+      value: "--with-libyaml-dir=/usr"
   commands:
     pre-build:
       - rm -f .ruby-version || true
       - bundle lock --add-platform x86_64-linux || true
     build:
-      - dnf -y install \
-          gcc make patch redhat-rpm-config git pkgconf-pkg-config \
+      - yum -y install \
+          gcc gcc-c++ make redhat-rpm-config git pkgconfig \
           libyaml-devel \
-          mariadb-connector-c mariadb-connector-c-devel \
+          mariadb-devel \
           zlib-devel openssl-devel readline-devel
       - gem install bundler -v 2.6.9
       - bundle _2.6.9_ config set path 'vendor/bundle'
