@@ -1,0 +1,43 @@
+version: 1.0
+runtime: ruby31
+
+build:
+  env:
+    - name: BUNDLE_WITHOUT
+      value: "development:test"
+    - name: BUNDLE_DEPLOYMENT
+      value: "1"
+    - name: BUNDLE_FORCE_RUBY_PLATFORM
+      value: "1"
+    - name: BUNDLE_BUILD__PSYCH
+      value: "--with-libyaml-dir=/usr"
+  commands:
+    pre-build:
+      - cd backend
+      - rm -f .ruby-version || true
+      - bundle lock --add-platform x86_64-linux || true
+    build:
+      - cd backend
+      - yum -y groupinstall "Development Tools"
+      - yum -y install libyaml-devel zlib-devel mariadb-devel openssl-devel readline-devel git
+      - gem install bundler -v 2.6.9
+      - bundle _2.6.9_ config set path 'vendor/bundle'
+      - bundle _2.6.9_ install --jobs 4 --retry 3
+    post-build:
+      - cd backend
+      - bundle _2.6.9_ exec rake assets:precompile || true
+
+run:
+  runtime-version: 3.1.7
+  command: bash -lc "cd backend && bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080"
+  network:
+    port: 8080
+  env:
+    - name: RAILS_ENV
+      value: "production"
+    - name: RAILS_LOG_TO_STDOUT
+      value: "1"
+    - name: RAILS_SERVE_STATIC_FILES
+      value: "1"
+    - name: PORT
+      value: "8080"
