@@ -11,18 +11,18 @@ build:
       value: "1"
   commands:
     pre-build:
-      - test -d backend || { echo "backend dir missing"; exit 1; }
-      - rm -f backend/.ruby-version || true
-      - cd backend && bundle lock --add-platform x86_64-linux || true
-      - cd backend && gem install bundler -v 2.6.9
+      - rm -f .ruby-version || true
+      - bundle lock --add-platform x86_64-linux || true
+      - gem install bundler -v 2.6.9
     build:
-      - cd backend && bundle _2.6.9_ config set path 'vendor/bundle'
-      - cd backend && bundle _2.6.9_ install --jobs 4 --retry 3
+      - bundle _2.6.9_ config set path 'vendor/bundle'
+      - bundle _2.6.9_ install --jobs 4 --retry 3
     post-build:
-      - cd backend && bundle _2.6.9_ exec rake assets:precompile || true
+      - bundle _2.6.9_ exec rake assets:precompile || true
 
 run:
-  command: bash -lc "cd backend && bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080"
+  runtime-version: 3.1.7
+  command: bash -lc "bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080"
   network:
     port: 8080
   env:
