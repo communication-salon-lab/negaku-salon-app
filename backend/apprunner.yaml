@@ -9,19 +9,23 @@ build:
       value: "1"
     - name: BUNDLE_FORCE_RUBY_PLATFORM
       value: "1"
+    - name: BUNDLE_BUILD__PSYCH
+      value: "--with-libyaml-dir=/usr"
+    - name: BUNDLE_BUILD__MYSQL2
+      value: "--with-mysql-config=/usr/bin/mysql_config"
+
   commands:
-    pre-build:
-      - rm -f .ruby-version || true
-      - bundle lock --add-platform x86_64-linux || true
     build:
+      - yum -y install libyaml-devel mariadb-connector-c mariadb-connector-c-devel
       - bundle config set path 'vendor/bundle'
       - bundle install --jobs 4 --retry 3
+
     post-build:
       - bundle exec rake assets:precompile || true
 
 run:
   runtime-version: 3.1.7
-  command: bash -lc "bundle exec rails server -b 0.0.0.0 -p 8080"
+  command: bundle exec rails server -b 0.0.0.0 -p 8080
   network:
     port: 8080
   env:
