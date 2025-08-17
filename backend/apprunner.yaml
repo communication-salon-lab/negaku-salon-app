@@ -3,6 +3,8 @@ runtime: ruby31
 
 build:
   env:
+    - name: APP_DIR
+      value: "src/backend"
     - name: BUNDLE_WITHOUT
       value: "development:test"
     - name: BUNDLE_DEPLOYMENT
@@ -11,20 +13,22 @@ build:
       value: "1"
   commands:
     pre-build:
-      - cd backend && bundle lock --add-platform x86_64-linux || true
+      - cd "$APP_DIR" && bundle lock --add-platform x86_64-linux || true
     build:
-      - cd backend && gem install bundler -v 2.6.9
-      - cd backend && bundle _2.6.9_ config set path 'vendor/bundle'
-      - cd backend && bundle _2.6.9_ install --jobs 4 --retry 3
+      - cd "$APP_DIR" && gem install bundler -v 2.6.9
+      - cd "$APP_DIR" && bundle _2.6.9_ config set path 'vendor/bundle'
+      - cd "$APP_DIR" && bundle _2.6.9_ install --jobs 4 --retry 3
     post-build:
-      - cd backend && bundle _2.6.9_ exec rake assets:precompile || true
+      - cd "$APP_DIR" && bundle _2.6.9_ exec rake assets:precompile || true
 
 run:
   runtime-version: 3.1.7
-  command: bash -lc "cd backend && bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080"
+  command: bash -lc "cd \"$APP_DIR\" && bundle _2.6.9_ exec rails server -b 0.0.0.0 -p 8080"
   network:
     port: 8080
   env:
+    - name: APP_DIR
+      value: "src/backend"
     - name: RAILS_ENV
       value: "production"
     - name: RAILS_LOG_TO_STDOUT
