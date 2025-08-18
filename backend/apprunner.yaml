@@ -13,7 +13,6 @@ build:
       value: "--with-libyaml-dir=/usr"
     - name: BUNDLE_BUILD__MYSQL2
       value: "--with-mysql-config=/usr/bin/mysql_config"
-
   commands:
     build:
       - yum -y install libyaml-devel mariadb-devel gcc make pkgconfig
@@ -21,13 +20,14 @@ build:
       - bundle _2.6.9_ config set path 'vendor/bundle'
       - bundle _2.6.9_ install --jobs 4 --retry 3
 
-
 run:
   runtime-version: 3.1.7
   command: >
-    bash -lc 'export RAILS_ENV=${RAILS_ENV:-production};
+    bash -lc 'set -e;
+      export RAILS_ENV=${RAILS_ENV:-production};
       : "${SECRET_KEY_BASE:?}"; : "${DATABASE_URL:?}";
-      exec bundle _2.6.9_ exec puma -C config/puma.rb -b tcp://0.0.0.0:${PORT:-8080}"
+      if [ -f config/puma.rb ]; then PUMA_OPTS="-C config/puma.rb"; else PUMA_OPTS=""; fi;
+      exec bundle _2.6.9_ exec puma $PUMA_OPTS -b tcp://0.0.0.0:${PORT:-8080}'
   network:
     port: 8080
   env:
@@ -39,5 +39,9 @@ run:
       value: "mysql2://admin:negakusalon2024@database-1.cj8kyw6go3j4.ap-northeast-1.rds.amazonaws.com:3306/salon_production"
     - name: SECRET_KEY_BASE
       value: "87435277267c3e8e13fcb485c774f3735b8c672a6e36cf3dc3e236ef90ce49e3ce566ad4ce8162d5e253e88e3355cfd0f1b60fb3f9da79b502cea24ba75ef2bf"
+    - name: RAILS_LOG_TO_STDOUT
+      value: "1"
+    - name: RAILS_SERVE_STATIC_FILES
+      value: "1"
     - name: RAILS_MASTER_KEY
       value: "1aa6dd3988642770fd152d0ce48ce2c1"
