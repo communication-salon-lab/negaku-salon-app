@@ -12,6 +12,7 @@ min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
 threads min_threads_count, max_threads_count
 
 rails_env = ENV.fetch("RAILS_ENV") { "development" }
+port ENV.fetch("PORT", "8080")
 
 if rails_env == "production"
   # If you are running more than 1 thread per process, the workers count
