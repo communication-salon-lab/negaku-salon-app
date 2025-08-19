@@ -22,7 +22,7 @@ build:
 
 run:
   runtime-version: 3.1.7
-  command: bundle _2.6.9_ exec puma -C config/puma.rb
+  command: /bin/sh -lc "mkdir -p tmp/pids tmp/cache tmp/sockets log && exec bundle _2.6.9_ exec puma -C config/puma.rb"
   network:
     port: 8080
   env:
