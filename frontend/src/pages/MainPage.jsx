@@ -1,5 +1,6 @@
 import React from "react";
 import PeopleCount from "./PeopleCount";
+import ArticleList from '../components/ArticleList'
 import { Helmet } from "react-helmet-async";
 
 const MainPage = () => {
@@ -60,6 +61,7 @@ const MainPage = () => {
                 <p>6月13日 映画上映会（LA LA LAND）</p>
                 <p>6月30日 ~ 7月4日 カウンター（相談会）</p>
                 <p>7月4日 プロジェクト交流会</p>
+                <ArticleList />
               </div>
             </div>
             <div className="card bg-white shadow-xl">

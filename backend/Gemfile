@@ -49,3 +49,12 @@ group :development do
   # gem "spring"
 end
 
+# パスワードを安全に保存するため
+gem 'bcrypt'
+
+# 認証トークン(JWT)を扱うため
+gem 'jwt'
+
+# React(別ドメイン)からのAPIリクエストを許可するため
+gem 'rack-cors'
+
