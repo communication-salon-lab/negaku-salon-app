@@ -79,6 +79,7 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     benchmark (0.4.0)
     bigdecimal (3.1.8)
     bootsnap (1.18.4)
@@ -102,6 +103,8 @@ GEM
     irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    jwt (3.1.2)
+      base64
     logger (1.6.1)
     loofah (2.23.1)
       crass (~> 1.0.2)
@@ -113,7 +116,6 @@ GEM
       net-smtp
     marcel (1.0.4)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
     minitest (5.25.1)
     msgpack (1.7.5)
     mutex_m (0.2.0)
@@ -128,9 +130,6 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.16.7)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
     nokogiri (1.16.7-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
@@ -196,13 +195,14 @@ GEM
 
 PLATFORMS
   arm64-darwin-24
-  ruby
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt
   bootsnap
   debug
   dotenv-rails
+  jwt
   mysql2 (~> 0.5)
   puma (>= 5.0)
   rack-cors
