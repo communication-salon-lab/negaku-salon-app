@@ -1,6 +1,7 @@
 import React from "react";
 import PeopleCount from "./PeopleCount";
-import ArticleList from '../components/ArticleList'
+import ArticleList from '../components/ArticleList';
+import Nagesen from '../components/Nagesen';
 import { Helmet } from "react-helmet-async";
 
 const MainPage = () => {
@@ -51,7 +52,6 @@ const MainPage = () => {
         {/* お知らせセクション */}
         <div className="bg-Beige p-5 mb-10 lg:p-10 mt-3 lg:mt-15 text-base md:text-xl lg:text-xl animate-fade-in-bottom">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">お知らせ</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="card bg-white shadow-xl">
               <div className="card-body">
                 <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">イベント情報</h3>
@@ -64,40 +64,12 @@ const MainPage = () => {
                 <ArticleList />
               </div>
             </div>
-            <div className="card bg-white shadow-xl">
-              <div className="card-body">
-                <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">混雑状況</h3>
-                {/* <p>現在の混雑状況は「普通」です。</p> */}
-                <PeopleCount />
-              </div>
-            </div>
-          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
-          {/* 1枚目 */}
-            <div className="p-4">
-              <img
-                src="/nagesen.png"
-                alt="さろまる"
-                className="w-full h-auto object-contain"
-              />
-            </div>
-          {/* 2枚目 */}
-            <div className="p-4">
-              <img
-                src="/price2.png"
-                alt="投げ銭の記録"
-                className="w-full h-auto object-contain"
-              />
-            </div>
-          {/* 3枚目 */}
-            <div className="p-4">
-              <img
-                src="/price1.png"
-                alt="投げ銭_2024"
-                className="w-full h-auto object-contain"
-              />
-            </div>
+        
+        <PeopleCount />
+        
+        <div className="flex flex-col justify-center items-center">
+        <Nagesen />
         </div>
 
         {/* Googleカレンダー */}
