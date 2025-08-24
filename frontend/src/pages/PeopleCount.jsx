@@ -49,9 +49,25 @@ const PeopleCount = () => {
     // 人数を取得
     fetchPeopleCount();
     // 3分ごとに最新データを更新
-    const timer = setInterval(fetchPeopleCount, 180000);
+    const timer = setInterval(fetchPeopleCount, 10000);
     return () => clearInterval(timer);
-  }, [isOpen]);
+  }, []);
+  // }, [isOpen]);
+
+  // if (!isOpen) {
+  //   return <p>営業時間外</p>;
+  // }
+
+  const getImageForCount = (count) => {
+    if (count <= 2) {
+      return congestionImages.level1;
+    } else if (count <= 4) {
+      return congestionImages.level2;
+    } else {
+      return congestionImages.level3;
+    }
+  };
+
 
   // if (!isOpen) {
   //   return <p>営業時間外</p>;
@@ -78,20 +94,20 @@ const PeopleCount = () => {
       ) : (
         <>
           <div className="flex flex-col justify-center items-center">
-            <h3 className="card-title text-red-600 text-lg md:text-xl lg:text-2xl">現在の混雑状況</h3>
-            <p className="text-gray-600 mt-2">{formattedTimestamp}現在</p>
+            <h3 className="card-title text-red-600 text-2xl md:text-2xl lg:text-3xl">現在の混雑状況</h3>
+            <p className="text-gray-600 mt-2 text-2xl md:text-1xl lg:text-2xl">{formattedTimestamp}現在</p>
             <img
               src="/konzatu.png"
               alt="混雑画像"
-              className="w-[70vw] md:w-[70vw]"
+              className="w-[100vw] md:w-[70vw]"
             />
-            <div className="bg-white w-1/4 m-10">
-              <h3 className="text-white bg-Olive text-lg md:text-xl lg:text-2xl text-center p-2">コミュニケーションサロン１</h3>
+            <div className="bg-white w-1/3 md:w-1/4 lg:w-1/4 m-10">
+              <h3 className="text-white bg-Olive text-sm md:text-sm lg:text-1xl text-center p-2">コミュニケーションサロン１</h3>
               {/* <p>現在の混雑状況は「普通」です。</p> */}
               <div className="flex justify-center">
-                <img
-                  src={getImageForCount(peopleCount)}
-                  alt="混雑状況"
+                <img 
+                  src={getImageForCount(peopleCount)} 
+                  alt="混雑状況" 
                   className="w-[20vw]" // 画像サイズを調整
                 />
               </div>
