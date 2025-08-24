@@ -19,7 +19,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     env_file:
-      # - ./backend/.env.local
+      - ./backend/.env.local
     command: >
       bash -lc "rm -f tmp/pids/server.pid &&
               bundle exec rails db:prepare &&

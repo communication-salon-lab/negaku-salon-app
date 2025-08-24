@@ -89,9 +89,9 @@ const PeopleCount = () => {
               <h3 className="text-white bg-Olive text-lg md:text-xl lg:text-2xl text-center p-2">コミュニケーションサロン１</h3>
               {/* <p>現在の混雑状況は「普通」です。</p> */}
               <div className="flex justify-center">
-                <img 
-                  src={getImageForCount(peopleCount)} 
-                  alt="混雑状況" 
+                <img
+                  src={getImageForCount(peopleCount)}
+                  alt="混雑状況"
                   className="w-[20vw]" // 画像サイズを調整
                 />
               </div>
