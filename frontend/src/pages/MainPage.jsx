@@ -3,6 +3,7 @@ import PeopleCount from "./PeopleCount";
 import ArticleList from '../components/ArticleList';
 import Nagesen from '../components/Nagesen';
 import { Helmet } from "react-helmet-async";
+import TrendChart from './/TrendChart';
 
 const MainPage = () => {
   return (
@@ -65,9 +66,11 @@ const MainPage = () => {
               </div>
             </div>
         </div>
-        
+
         <PeopleCount />
-        
+
+        <TrendChart rangeHours={1} />
+
         <div className="flex flex-col justify-center items-center">
         <Nagesen />
         </div>
