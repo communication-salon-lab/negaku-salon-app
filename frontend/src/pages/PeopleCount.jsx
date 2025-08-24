@@ -68,6 +68,21 @@ const PeopleCount = () => {
     }
   };
 
+
+  // if (!isOpen) {
+  //   return <p>営業時間外</p>;
+  // }
+
+  const getImageForCount = (count) => {
+    if (count <= 2) {
+      return congestionImages.level1;
+    } else if (count <= 4) {
+      return congestionImages.level2;
+    } else {
+      return congestionImages.level3;
+    }
+  };
+
   const formattedTimestamp = lastUpdated
     ? format(new Date(lastUpdated), 'yyyy/MM/dd (E) HH:mm', { locale: ja })
     : "時刻を取得中...";
