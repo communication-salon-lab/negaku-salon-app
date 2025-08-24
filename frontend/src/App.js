@@ -7,7 +7,7 @@ import AboutPage from './pages/AboutPage';
 import LoginPage from './pages/LoginPage';
 import AdminDashboard from './pages/AdminDashboard';
 import ArticleDetailPage from './pages/ArticleDetailPage';
-import ArticleEditorPage from './pages/ArticleEditorPage'; // ★ 新しく作成するページをインポート
+import ArticleEditorPage from './pages/ArticleEditorPage';
 import { Route, Routes, useLocation, Navigate} from 'react-router-dom';
 
 // 認証が必要なページを守るためのコンポーネント

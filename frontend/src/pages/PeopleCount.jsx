@@ -49,9 +49,10 @@ const PeopleCount = () => {
     // 人数を取得
     fetchPeopleCount();
     // 3分ごとに最新データを更新
-    const timer = setInterval(fetchPeopleCount, 180000);
+    const timer = setInterval(fetchPeopleCount, 10000);
     return () => clearInterval(timer);
-  }, [isOpen]);
+  }, []);
+  // }, [isOpen]);
 
   // if (!isOpen) {
   //   return <p>営業時間外</p>;
