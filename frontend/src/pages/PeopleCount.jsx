@@ -37,7 +37,7 @@ const PeopleCount = () => {
         payload = data;
       }
       setPeopleCount(payload.count);
-      setLastUpdated(payload.timestamp); 
+      setLastUpdated(payload.timestamp);
     } catch (err) {
       console.error("人数の取得に失敗しています:", err);
       setError(err);
@@ -69,20 +69,6 @@ const PeopleCount = () => {
   };
 
 
-  // if (!isOpen) {
-  //   return <p>営業時間外</p>;
-  // }
-
-  const getImageForCount = (count) => {
-    if (count <= 2) {
-      return congestionImages.level1;
-    } else if (count <= 4) {
-      return congestionImages.level2;
-    } else {
-      return congestionImages.level3;
-    }
-  };
-
   const formattedTimestamp = lastUpdated
     ? format(new Date(lastUpdated), 'yyyy/MM/dd (E) HH:mm', { locale: ja })
     : "時刻を取得中...";
@@ -105,18 +91,16 @@ const PeopleCount = () => {
               <h3 className="text-white bg-Olive text-sm md:text-sm lg:text-1xl text-center p-2">コミュニケーションサロン１</h3>
               {/* <p>現在の混雑状況は「普通」です。</p> */}
               <div className="flex justify-center">
-                <img 
-                  src={getImageForCount(peopleCount)} 
-                  alt="混雑状況" 
+                <img
+                  src={getImageForCount(peopleCount)}
+                  alt="混雑状況"
                   className="w-[20vw]" // 画像サイズを調整
                 />
               </div>
             </div>
           </div>
-          
           {/* <p>サロン1は、現在 {peopleCount} 人</p> */}
         </>
-        
       )}
     </div>
   );
