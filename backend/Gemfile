@@ -59,3 +59,6 @@ gem 'jwt'
 # React(別ドメイン)からのAPIリクエストを許可するため
 gem 'rack-cors'
 
+gem 'lamby'
+
+ gem 'logger', '~> 1.7'
