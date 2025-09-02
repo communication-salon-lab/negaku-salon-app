@@ -105,7 +105,11 @@ GEM
       reline (>= 0.4.2)
     jwt (3.1.2)
       base64
-    logger (1.6.1)
+    lambda-console-ruby (1.0.0)
+    lamby (6.0.1)
+      lambda-console-ruby
+      rack (>= 3.0.0)
+    logger (1.7.0)
     loofah (2.23.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -116,6 +120,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.9)
     minitest (5.25.1)
     msgpack (1.7.5)
     mutex_m (0.2.0)
@@ -130,6 +135,11 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
+    nokogiri (1.16.7)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.16.7-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.16.7-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
@@ -194,7 +204,9 @@ GEM
     zeitwerk (2.6.18)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-24
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -203,6 +215,8 @@ DEPENDENCIES
   debug
   dotenv-rails
   jwt
+  lamby
+  logger (~> 1.7)
   mysql2 (~> 0.5)
   puma (>= 5.0)
   rack-cors
