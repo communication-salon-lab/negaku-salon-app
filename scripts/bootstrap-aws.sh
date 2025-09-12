@@ -1,17 +1,14 @@
 set -euo pipefail
 
-# ====== あなたの値 ======
 REGION=ap-northeast-1
 OWNER=communication-salon-lab
 REPO=negaku-salon-app
 ROLE_NAME=GitHubActionsDeployRole
 ECR_REPOSITORY=salon-rails-lambda
 APP_FUNC=salon-rails
-# =======================
 
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text --region "$REGION")
 
-# 0) GitHub OIDC プロバイダがあるか軽くチェック（無ければ後述の注意を表示）
 if ! aws iam list-open-id-connect-providers --query 'OpenIDConnectProviderList[].Arn' --output text \
   | grep -q 'token.actions.githubusercontent.com'; then
   echo "[注意] OIDCプロバイダ(token.actions.githubusercontent.com)が未作成です。先にAWS側で作成してから再実行してください。"
@@ -75,7 +72,7 @@ aws iam put-role-policy \
   --policy-name DeployPermissions \
   --policy-document file:///tmp/policy.json
 
-# 4) ECR リポジトリ作成（存在すればスキップ）
+# 4) ECR リポジトリ作成
 aws ecr describe-repositories --repository-names "$ECR_REPOSITORY" --region "$REGION" >/dev/null 2>&1 \
   || aws ecr create-repository --repository-name "$ECR_REPOSITORY" --region "$REGION" >/dev/null
 
