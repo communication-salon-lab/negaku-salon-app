@@ -3,19 +3,20 @@ on:
   push:
     branches: [ main ]
     paths:
-      - backend/**
-      - Dockerfile
-      - Gemfile*
-      - lambda_function.rb
-
-permissions:
-  id-token: write   # OIDC
-  contents: read
+      - 'backend/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch: {}
 
 env:
   AWS_REGION: ap-northeast-1
+  AWS_ACCOUNT_ID: 343218202623
   ECR_REPOSITORY: salon-rails-lambda
-  LAMBDA_FUNCTION: salon-rails
+  LAMBDA_FUNCTION_NAME: salon-rails
+  IMAGE_TAG: ${{ github.sha }}
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   deploy:
@@ -23,27 +24,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Configure AWS (OIDC)
-        uses: aws-actions/configure-aws-credentials@v4
+      - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubActionsDeployRole
+          role-to-assume: arn:aws:iam::343218202623:role/GitHubActionsDeployRole
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Login to ECR
-        uses: aws-actions/amazon-ecr-login@v2
+      - uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build & Push image
-        run: |
-          ACCOUNT_ID=${{ secrets.AWS_ACCOUNT_ID }}
-          IMAGE="${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}"
-          TAG=${GITHUB_SHA::7}
-          docker build -t "${IMAGE}:${TAG}" .
-          docker push "${IMAGE}:${TAG}"
-          echo "IMAGE_URI=${IMAGE}:${TAG}" >> $GITHUB_ENV
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
 
-      - name: Update Lambda to new image
+      - name: Build & Push (ECR)
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend                 # フロントとバックで分けているせいで、指定しないと！！！
+          file: ./backend/Dockerfile         # ここも
+          platforms: linux/arm64
+          push: true
+          tags: |
+            ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+            ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Update Lambda
         run: |
+          IMAGE="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}"
           aws lambda update-function-code \
-            --function-name "${LAMBDA_FUNCTION}" \
-            --image-uri "${IMAGE_URI}"
-          aws lambda wait function-updated --function-name "${LAMBDA_FUNCTION}"
+            --function-name "${LAMBDA_FUNCTION_NAME}" \
+            --image-uri "${IMAGE}" \
+            --region "${AWS_REGION}"
+          aws lambda wait function-updated --function-name "${LAMBDA_FUNCTION_NAME}" --region "${AWS_REGION}"
+
+      - name: Show new image (for sanity)
+        run: |
+          aws lambda get-function --function-name "${LAMBDA_FUNCTION_NAME}" --region "${AWS_REGION}" \
+            --query '{ImageUri:Code.ImageUri,ResolvedImageUri:Code.ResolvedImageUri,LastModified:Configuration.LastModified}'
