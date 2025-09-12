@@ -3,8 +3,7 @@ import LoginForm from '../components/LoginForm'; // 後で作成するログイ�
 
 const LoginPage = () => {
   return (
-    <div>
-      <h1>ログイン</h1>
+    <div className="bg-Beige min-h-screen flex items-center justify-center pt-20 px-4">
       <LoginForm />
     </div>
   );

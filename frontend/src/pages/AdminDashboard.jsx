@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import apiClient from '../api/axios'; // 認証ヘッダー付きのaxiosインスタンス
+import { format } from 'date-fns'; // 日付フォーマットのためにインポート
+
 
 const AdminDashboard = () => {
     const navigate = useNavigate(); 
@@ -45,36 +47,69 @@ const AdminDashboard = () => {
 
 
     return (
-    <div>
-        <h1>管理者ダッシュボード</h1>
-        <p>ようこそ！ログインに成功しました。</p>
+        <div className="bg-gray-100 min-h-screen pt-24 pb-12">
+            <div className="w-full max-w-6xl mx-auto p-4 md:p-8">
+                {/* ★ 2. ヘッダーセクション */}
+                <div className="flex justify-between items-center mb-8">
+                    <h1 className="text-3xl font-bold text-gray-800">管理者ダッシュボード</h1>
+                    <div className="flex gap-4">
+                        <button
+                            onClick={() => navigate('/admin/articles/new')}
+                            className="btn bg-Olive text-white hover:bg-GreenDark"
+                        >
+                            新規記事を作成
+                        </button>
+                        <button
+                            onClick={handleLogout}
+                            className="btn btn-ghost"
+                        >
+                            ログアウト
+                        </button>
+                    </div>
+                </div>
 
-        <button 
-        onClick={() => navigate('/admin/articles/new')} 
-        style={{ marginBottom: '20px', padding: '10px 20px', cursor: 'pointer' }}
-        >
-        新規記事を作成
-        </button>
-
-        <h2>記事一覧</h2>
-        <ul>
-        {articles.map(article => (
-            <li key={article.id}>
-            {article.title}
-            <button 
-                onClick={() => navigate(`/admin/articles/${article.id}/edit`)} 
-                style={{ marginLeft: '10px' }}
-            >
-                編集
-            </button>
-            <button onClick={() => handleDelete(article.id)} style={{ marginLeft: '10px' }}>
-                削除
-            </button>
-            </li>
-        ))}
-        </ul>
-        <button onClick={handleLogout}>ログアウト</button>
-    </div>
+                {/* ★ 3. 記事一覧テーブル */}
+                <div className="bg-white rounded-lg shadow-md overflow-x-auto">
+                    <table className="table w-full">
+                        {/* テーブルヘッダー */}
+                        <thead>
+                            <tr>
+                                <th>タイトル</th>
+                                <th>カテゴリ</th>
+                                <th>投稿日</th>
+                                <th className="text-right">操作</th>
+                            </tr>
+                        </thead>
+                        {/* テーブルボディ */}
+                        <tbody>
+                            {articles.map(article => (
+                                <tr key={article.id} className="hover">
+                                    <td className="font-bold">{article.title}</td>
+                                    <td><div className="badge badge-ghost">{article.category}</div></td>
+                                    <td>{format(new Date(article.created_at), 'yyyy/MM/dd HH:mm')}</td>
+                                    <td className="text-right">
+                                        <div className="flex gap-2 justify-end">
+                                            <button
+                                                onClick={() => navigate(`/admin/articles/${article.id}/edit`)}
+                                                className="btn btn-ghost btn-sm"
+                                            >
+                                                編集
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(article.id)}
+                                                className="btn btn-error btn-sm text-white"
+                                            >
+                                                削除
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     );
 };
 

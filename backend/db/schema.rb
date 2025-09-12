@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_19_044512) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_12_153130) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_19_044512) do
     t.date "event_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
   end
 
 end

@@ -31,26 +31,53 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <div>
-        <label>メールアドレス:</label>
-        <input
-          type="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>パスワード:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit">ログイン</button>
-    </form>
+    <div className="card w-full max-w-sm shrink-0 bg-base-100 shadow-2xl">
+      <form onSubmit={handleSubmit} className="card-body">
+        <h1 className="text-2xl font-bold text-center text-GreenDark">管理者ログイン</h1>
+        
+        {/* ★ 3. エラーメッセージのデザイン */}
+        {error && (
+          <div role="alert" className="alert alert-error text-sm p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>{error}</span>
+          </div>
+        )}
+
+        {/* ★ 4. daisyUIのフォームコントロールを使用 */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">ユーザー名</span>
+          </label>
+          <input
+            type="text"
+            placeholder="Username"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="input input-bordered"
+            required
+          />
+        </div>
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">パスワード</span>
+          </label>
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="input input-bordered"
+            required
+          />
+        </div>
+        <div className="form-control mt-6">
+          {/* ★ 5. ボタンのデザイン */}
+          <button type="submit" className="btn bg-Olive text-white hover:bg-GreenDark">
+            ログイン
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
