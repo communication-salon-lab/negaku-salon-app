@@ -56,7 +56,6 @@ gem 'bcrypt'
 # 認証トークン(JWT)を扱うため
 gem 'jwt'
 
-
 gem 'lamby'
 
 gem 'logger', '~> 1.7'
