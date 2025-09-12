@@ -4,7 +4,7 @@ on:
     branches: [ main ]
     paths:
       - 'backend/**'
-      - '.github/workflows/deploy-backend.yml'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch: {}
 
 env:
@@ -38,9 +38,11 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./backend                 # フロントとバックで分けているせいで、指定しないと！！！
-          file: ./backend/Dockerfile         # ここも
+          file: ./backend/Dockerfile.lambda   # ここも
           platforms: linux/arm64
           push: true
+          provenance: false
+          sbom: false
           tags: |
             ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
             ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:latest
