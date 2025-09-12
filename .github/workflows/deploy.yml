@@ -1,0 +1,78 @@
+name: Deploy Rails(Lambda container)
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+
+env:
+  AWS_REGION: ap-northeast-1
+  ECR_REPOSITORY: salon-rails-lambda
+  LAMBDA_FUNCTION_NAME: salon-rails
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # OIDC
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      # OIDC で AWS にログイン
+      - name: Configure AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::343218202623:role/GitHubActionsDeployRole
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to ECR
+        id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Ensure ECR repository exists
+        run: |
+          aws ecr describe-repositories --repository-names "$ECR_REPOSITORY" >/dev/null 2>&1 \
+          || aws ecr create-repository --repository-name "$ECR_REPOSITORY" >/dev/null
+
+      - name: Build & Push image (arm64)
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+          REGISTRY: ${{ steps.ecr.outputs.registry }}
+        run: |
+          set -e
+          IMAGE_URI="$REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          docker buildx create --use >/dev/null 2>&1 || true
+          docker buildx build --platform linux/arm64 -t "$IMAGE_URI" --push .
+          echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
+
+      - name: Update Lambda to new image
+        run: |
+          aws lambda update-function-code \
+            --function-name "$LAMBDA_FUNCTION_NAME" \
+            --image-uri "$IMAGE_URI" >/dev/null
+          aws lambda wait function-updated --function-name "$LAMBDA_FUNCTION_NAME"
+
+      # --- DBマイグレーション（別Lambdaを同イメージで運用） ---
+      # - name: Update migrate function & run migrations
+      #   run: |
+      #     aws lambda update-function-code \
+      #       --function-name salon-rails-migrate \
+      #       --image-uri "$IMAGE_URI" >/dev/null
+      #     aws lambda wait function-updated --function-name salon-rails-migrate
+      #     aws lambda invoke --function-name salon-rails-migrate /tmp/out.json >/dev/null
+      #     cat /tmp/out.json && echo
+
+      # 簡易ヘルスチェック（/up を Lambda 直叩き）
+      - name: Smoke test (/up)
+        run: |
+          cat > /tmp/up_event.json <<'JSON'
+          { "version":"2.0","routeKey":"$default","rawPath":"/up","rawQueryString":"",
+            "requestContext":{"http":{"method":"GET","path":"/up"}},"headers":{},"isBase64Encoded":false }
+          JSON
+          aws lambda invoke \
+            --function-name "$LAMBDA_FUNCTION_NAME" \
+            --cli-binary-format raw-in-base64-out \
+            --payload file:///tmp/up_event.json \
+            /tmp/out.json >/dev/null
+          cat /tmp/out.json | python3 -c 'import sys,json;print(json.load(sys.stdin)["statusCode"]);' | grep -q 200
