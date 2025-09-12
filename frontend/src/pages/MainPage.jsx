@@ -93,7 +93,7 @@ const MainPage = () => {
                 <button className="btn bg-Olive border-Olive text-white hover:bg-GreenDark absolute bottom-0 right-0">
                   一覧へ ＞
                 </button>
-                {/* <ArticleList /> */}
+                <ArticleList />
               </div>
             </div>
         </div>
