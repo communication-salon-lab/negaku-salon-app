@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // axiosのインスタンスを作成
 const apiClient = axios.create({
-  baseURL: 'http://localhost:3500/api/v1', // Rails APIのベースURLをここに設定
+  baseURL: process.env.REACT_APP_API_URL, // Rails APIのベースURLをここに設定
   headers: {
     'Content-Type': 'application/json',
   },
