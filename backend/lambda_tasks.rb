@@ -79,6 +79,9 @@ def handler(event:, context:)
     load Rails.root.join("db/seeds.rb")
     respond(ok: true, body: { ok: true, msg: "migrated+seeded" })
 
+  when 'seed:replant', 'reseed'   # ← 追加
+    system!('bundle exec rails db:seed:replant')
+
   else
     respond(ok: false, body: { ok: false, error: "unknown task=#{task}" })
   end
