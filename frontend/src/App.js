@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import AdminDashboard from './pages/AdminDashboard';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 import ArticleEditorPage from './pages/ArticleEditorPage';
+import ArticleListPage from './pages/ArticleListPage';
 import { Route, Routes, useLocation, Navigate} from 'react-router-dom';
 
 // 認証が必要なページを守るためのコンポーネント
@@ -26,6 +27,7 @@ function App() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<MainPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/articles" element={<ArticleListPage />} />
         <Route path="/articles/:id" element={<ArticleDetailPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route

@@ -39,7 +39,7 @@ class Api::V1::ArticlesController < ApplicationController
 
   # Strong Parameters: 不正なパラメータを防ぐ
   def article_params
-    params.require(:article).permit(:title, :content)
+    params.require(:article).permit(:title, :event_date, :category, :content)
   end
   
 end

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import PeopleCount from "./PeopleCount";
 import ArticleList from '../components/ArticleList';
 import Nagesen from '../components/Nagesen';
@@ -55,45 +56,11 @@ const MainPage = () => {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">お知らせ</h2>
             <div className="card bg-white shadow-xl w-[80%]">
               <div className="card-body relative">
-                {/* <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">イベント情報</h3> */}
-                <table className="w-full">
-                  <tbody>
-                    <tr className="grid grid-cols-1 md:grid-cols-[150px_120px_1fr] items-center gap-x-4 gap-y-2 py-3 border-b">
-                      <td className="p-2 w-[30%]">2025.05.20</td>
-                      <td className="badge badge-outline badge-info p-2  w-[40%] md:w-[65%] lg:w-[80%]">イベント</td>
-                      <td className="p-2">ボードゲームの日</td>
-                    </tr>
-                    <tr className="grid grid-cols-1 md:grid-cols-[150px_120px_1fr] items-center gap-x-4 gap-y-2 py-3 border-b">
-                      <td className="p-2">2025.05.29</td>
-                      <td className="badge badge-outline badge-accent p-2 w-[40%] md:w-[65%] lg:w-[80%]">相談会</td>
-                      <td className="p-2">入門プログラミング相談会</td>
-                    </tr>
-                    <tr className="grid grid-cols-1 md:grid-cols-[150px_120px_1fr] items-center gap-x-4 gap-y-2 py-3 border-b">
-                      <td className="p-2">2025.06.06</td>
-                      <td className="badge badge-outline badge-secondary p-2  w-[40%] md:w-[65%] lg:w-[80%]">シネマ</td>
-                      <td className="p-2">映画上映会（コナン）</td>
-                    </tr>
-                    <tr className="grid grid-cols-1 md:grid-cols-[150px_120px_1fr] items-center gap-x-4 gap-y-2 py-3 border-b">
-                      <td className="p-2">2025.06.13</td>
-                      <td className="badge badge-outline badge-secondary p-2  w-[40%] md:w-[65%] lg:w-[80%]">シネマ</td>
-                      <td className="p-2">映画上映会（LA LA LAND）</td>
-                    </tr>
-                    <tr className="grid grid-cols-1 md:grid-cols-[150px_120px_1fr] items-center gap-x-4 gap-y-2 py-3 border-b">
-                      <td className="p-2">2025.06.30 ~ 2025.07.04</td>
-                      <td className="badge badge-outline badge-accent p-2  w-[40%] md:w-[65%] lg:w-[80%]">相談会</td>
-                      <td className="p-2">カウンター（相談会）</td>
-                    </tr>
-                    <tr className="grid grid-cols-1 md:grid-cols-[150px_120px_1fr] items-center gap-x-4 gap-y-2 py-3 border-b">
-                      <td className="p-2">2025.07.04</td>
-                      <td className="badge badge-outline badge-info p-2  w-[40%] md:w-[65%] lg:w-[80%]">イベント</td>
-                      <td className="p-2">プロジェクト交流会</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <button className="btn bg-Olive border-Olive text-white hover:bg-GreenDark absolute bottom-0 right-0">
+                <ArticleList limit={5} />
+                {/* ★ 3. <button> を <Link> に変更 */}
+                <Link to="/articles" className="btn bg-Olive border-Olive text-white hover:bg-GreenDark absolute bottom-0 right-0">
                   一覧へ ＞
-                </button>
-                <ArticleList />
+                </Link>
               </div>
             </div>
         </div>
