@@ -14,7 +14,7 @@ class Api::V1::ArticlesController < ApplicationController
     end
 
     # event_dateでソート
-    render json: articles.sort_by { |a| a[:event_date] }.reverse
+    render json: articles.sort_by { |a| a[:event_date].to_s }.reverse
   end
 
   def show
