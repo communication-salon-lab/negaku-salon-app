@@ -31,5 +31,14 @@ module App
       config.api_only = true
       config.generators.orm :none
     end
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'https://communication-salon.com'
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :put, :patch, :delete, :options, :head],
+          expose: ['Authorization']
+      end
+    end
   end
 end
