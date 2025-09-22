@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import apiClient from '../api/axios';
+import axios from 'axios';
 
 // コンポーネント名を ArticleList に変更
 const ArticleList = () => {

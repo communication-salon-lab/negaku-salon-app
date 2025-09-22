@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import apiClient from '../api/axios';
+import axios from 'axios';
 
 const ArticleEditorPage = () => {
   const { id } = useParams(); // URLからIDを取得 (例: /articles/5/edit -> idは'5')
