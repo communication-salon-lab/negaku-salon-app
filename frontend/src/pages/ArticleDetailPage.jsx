@@ -13,7 +13,7 @@ const ArticleDetailPage = () => {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await apiClient.get(`/articles/${id}`)
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/articles/${id}`);
         setArticle(response.data);
       } catch (error) {
         console.error("記事の読み込みに失敗しました", error);

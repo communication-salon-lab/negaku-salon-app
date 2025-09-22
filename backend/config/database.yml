@@ -25,7 +25,10 @@ test:
   <<: *default
   database: app_test
 
-production: {}
+production:
+  adapter: sqlite3
+  database: /tmp/dummy.sqlite3
+
 
 
 # As with config/credentials.yml, you never want to store sensitive information,
