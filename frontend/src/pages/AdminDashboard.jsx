@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import apiClient from '../api/axios'; // 認証ヘッダー付きのaxiosインスタンス
+import axios from 'axios';
 import { format } from 'date-fns'; // 日付フォーマットのためにインポート
 
 
