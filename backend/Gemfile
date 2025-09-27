@@ -6,7 +6,7 @@ ruby "~> 3.1"
 gem "rails", "~> 7.1.5"
 
 # Use mysql as the database for Active Record
-gem "mysql2", group: [:development, :test]
+# gem "mysql2", group: [:development, :test]
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -41,13 +41,6 @@ gem "rack-cors"
 
 group :development, :test do
   gem 'dotenv-rails'
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[mingw mswin x64_mingw jruby]
-end
-
-group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
 end
 
 # パスワードを安全に保存するため
