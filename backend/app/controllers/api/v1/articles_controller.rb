@@ -1,25 +1,17 @@
 class Api::V1::ArticlesController < ApplicationController
   before_action :authenticate_admin!, only: [:create, :update, :destroy]
-  TABLE_NAME = "Articles"
-
   def index
-    resp = DYNAMO_CLIENT.scan(table_name: TABLE_NAME)
-    articles = resp.items.map do |item|
-      {
-        id: item["id"],
-        title: item["title"],
-        content: item["content"],
-        event_date: item["event_date"]
-      }
-    end
-
-    # event_dateでソート
-    render json: articles.sort_by { |a| a[:event_date].to_s }.reverse
+    ddb = Aws::DynamoDB::Client.new(region: ENV.fetch("AWS_REGION","ap-northeast-1"))
+    resp = ddb.scan(table_name: ENV.fetch("ARTICLES_TABLE","articles"))
+    items = resp.items.map { |it|
+      { id: it["id"], title: it["title"], body: it["body"], published_at: it["published_at"] }
+    }
+    render json: items
   end
 
   def show
-    resp = DYNAMO_CLIENT.get_item(
-      table_name: TABLE_NAME,
+    resp = ddb.get_item(
+      table_name: ENV.fetch("ARTICLES_TABLE","articles"),
       key: { "id" => params[:id] }
     )
     if resp.item
@@ -37,7 +29,7 @@ class Api::V1::ArticlesController < ApplicationController
       "content" => params[:content],
       "event_date" => params[:event_date] || Date.today.to_s
     }
-    DYNAMO_CLIENT.put_item(table_name: TABLE_NAME, item: item)
+    ddb.put_item(table_name: ENV.fetch("ARTICLES_TABLE","articles"), item: item)
     render json: item, status: :created
   end
 
@@ -50,12 +42,12 @@ class Api::V1::ArticlesController < ApplicationController
       "content" => params[:content],
       "event_date" => params[:event_date]
     }
-    DYNAMO_CLIENT.put_item(table_name: TABLE_NAME, item: item)
+    ddb.put_item(table_name: ENV.fetch("ARTICLES_TABLE","articles"), item: item)
     render json: item
   end
 
   def destroy
-    DYNAMO_CLIENT.delete_item(table_name: TABLE_NAME, key: { "id" => params[:id] })
+    ddb.delete_item(table_name: ENV.fetch("ARTICLES_TABLE","articles"), key: { "id" => params[:id] })
     head :no_content
   end
 end
