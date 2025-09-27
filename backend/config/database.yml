@@ -25,9 +25,6 @@ test:
   <<: *default
   database: app_test
 
-production:
-  adapter: sqlite3
-  database: /tmp/dummy.sqlite3
 
 
 

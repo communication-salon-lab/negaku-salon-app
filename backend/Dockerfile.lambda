@@ -1,35 +1,34 @@
-FROM public.ecr.aws/lambda/ruby:3.3
+# builder
+FROM public.ecr.aws/lambda/ruby:3.3 AS build
 
-# ネイティブ拡張用ライブラリ（mysql2/psych 等）
-RUN dnf -y update && dnf -y install \
-    gcc gcc-c++ make which git tar gzip pkgconfig \
-    libyaml-devel mariadb-connector-c-devel \
-  && dnf clean all
+# DNF キャッシュを /tmp に逃がして容量エラー回避
+RUN mkdir -p /tmp/dnf-cache && \
+    dnf -y --setopt=keepcache=0 --setopt=cachedir=/tmp/dnf-cache update && \
+    dnf -y --setopt=keepcache=0 --setopt=cachedir=/tmp/dnf-cache install \
+      gcc gcc-c++ make which git tar gzip pkgconf-pkg-config libyaml-devel \
+    && dnf clean all && rm -rf /var/cache/dnf /var/cache/yum /tmp/dnf-cache
 
 WORKDIR /var/task
-RUN rm -rf .bundle
 
-# 先に Gemfile 群だけコピー
+# 先に Gemfile 群
 COPY Gemfile Gemfile.lock ./
-
-# Lambda(arm64)とrubyプラットフォームをlockに追加
 RUN bundle lock --add-platform aarch64-linux ruby
 
-# 本番用に vendor/bundle へインストール
+# 本番インストール
 ENV BUNDLE_WITHOUT="development:test" \
     BUNDLE_DEPLOYMENT="true" \
     BUNDLE_PATH="vendor/bundle"
 RUN bundle install --jobs 4 --retry 3
 
-# アプリ本体をコピー（lambda_function.rb を含む）
+# アプリ本体
 COPY . .
+RUN bundle install --jobs 4 --retry 3
 
-# コピーで Gemfile.lock を上書きした可能性に備えて念のため再同期
-RUN bundle lock --add-platform aarch64-linux ruby \
- && bundle install --jobs 4 --retry 3
+# runtime
+FROM public.ecr.aws/lambda/ruby:3.3
+WORKDIR /var/task
+COPY --from=build /var/task /var/task
 
-# 実行時環境
-ENV RAILS_ENV=production RAILS_LOG_TO_STDOUT=1 RAILS_SERVE_STATIC_FILES=1
-
-# Lamby ハンドラ
+# 実行時
+ENV RAILS_ENV=production RAILS_LOG_TO_STDOUT=1 RAILS_SERVE_STATIC_FILES=1 RAILS_SKIP_ACTIVE_RECORD=1
 CMD ["lambda_function.handler"]
