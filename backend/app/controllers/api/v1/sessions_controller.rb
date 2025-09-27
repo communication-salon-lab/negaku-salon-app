@@ -1,20 +1,16 @@
 class Api::V1::SessionsController < ApplicationController
   def create
-    admin = Admin.find_by(name: params[:name])
+    name = params[:name].to_s
+    rec = ddb.get_item(table_name: admins_table, key: { "name" => name }).item
+    return render json: { error: 'Invalid id or password' }, status: :unauthorized unless rec&.dig("password_digest")
 
-    if admin&.authenticate(params[:password])
-      # JWTを生成
-      # 有効期限を24時間に設定
-      exp = Time.now.to_i + 24 * 3600
-      payload = { admin_id: admin.id, exp: exp }
+    ok = BCrypt::Password.new(rec["password_digest"]) == params[:password].to_s
+    return render json: { error: 'Invalid id or password' }, status: :unauthorized unless ok
 
-      # 秘密鍵は環境変数などで管理するのが望ましい
-      secret_key = Rails.application.secrets.secret_key_base
-      token = JWT.encode(payload, secret_key, 'HS256')
-
-      render json: { token: token }
-    else
-      render json: { error: 'Invalid id or password' }, status: :unauthorized
-    end
+    exp = (Time.now + 24*3600).to_i
+    payload = { admin_id: name, exp: exp }
+    secret_key = ENV.fetch("JWT_SECRET") { Rails.application.secret_key_base }
+    token = JWT.encode(payload, secret_key, 'HS256')
+    render json: { token: token }
   end
 end
