@@ -1,0 +1,8 @@
+{
+  "version": "2.0",
+  "rawPath": "/api/v1/articles",
+  "rawQueryString": "",
+  "headers": { "host": "example.com", "x-forwarded-proto": "https" },
+  "requestContext": { "http": { "method": "GET", "path": "/api/v1/articles" } },
+  "isBase64Encoded": false
+}

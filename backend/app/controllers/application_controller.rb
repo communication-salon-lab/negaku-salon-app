@@ -8,7 +8,6 @@ class ApplicationController < ActionController::API
   end
 
   def articles_table
-    # ★ 既存テーブル名に合わせる（大文字の "Articles"）
     ENV.fetch("ARTICLES_TABLE", "Articles")
   end
 
@@ -21,9 +20,8 @@ class ApplicationController < ActionController::API
     return render json: { error: 'Not Authorized' }, status: :unauthorized unless token
 
     begin
-      secret_key = ENV.fetch("JWT_SECRET") { Rails.application.secret_key_base }
-      decoded = JWT.decode(token, secret_key, true, algorithm: 'HS256')
-      @current_admin_id = decoded[0]['admin_id']
+      decoded = JWT.decode(token, ENV.fetch("JWT_SECRET"), true, { algorithm: 'HS256' })
+      @current_admin_name = decoded[0]['admin_name']
     rescue JWT::DecodeError
       render json: { error: 'Invalid token' }, status: :unauthorized
     end
