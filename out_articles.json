@@ -1,1 +1,1 @@
-{"errorMessage":"undefined method `active_storage' for an instance of Rails::Application::Configuration","errorType":"Init\u003cNoMethodError\u003e","stackTrace":[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]}
+{"errorMessage":"uninitialized constant ActionMailer","errorType":"Init\u003cNameError\u003e","stackTrace":[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]}
