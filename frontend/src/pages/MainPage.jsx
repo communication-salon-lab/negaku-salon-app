@@ -79,7 +79,7 @@ const MainPage = () => {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">イベントカレンダー</h2>
           <div className="overflow-hidden rounded-lg shadow-lg">
             <iframe
-              src="https://calendar.google.com/calendar/embed?src=negakusalon2024%40gmail.com&ctz=UTC"
+              src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&src=bmVnYWt1c2Fsb24yMDI0QGdtYWlsLmNvbQ&color=%23039be5"
               style={{ border: 0 }}
               className="w-full h-[300px] md:h-[550px] lg:h-[750px]"
               title="Calendar"
