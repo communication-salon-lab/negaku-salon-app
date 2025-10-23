@@ -56,20 +56,25 @@ const MainPage = () => {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">お知らせ</h2>
             <div className="card bg-white shadow-xl w-[80%]">
               <div className="card-body relative">
+                {/* 固定のお知らせ */}
+                <div className="mb-6">
+                  <ul className="list-disc list-inside text-base md:text-lg leading-relaxed">
+                    <li>10月10日(金) 4〜5限　山下プロジェクト ボードゲーム試遊会</li>
+                    <li>10月29日(水) 3〜4限　野球観戦イベント 〜ドジャース vs ブルージェイズ戦〜</li>
+                  </ul>
+                </div>
+                {/* 記事の一覧 */}
                 <ArticleList limit={5} />
-                {/* ★ 3. <button> を <Link> に変更 */}
+
                 <Link to="/articles" className="btn bg-Olive border-Olive text-white hover:bg-GreenDark absolute bottom-0 right-0">
                   一覧へ ＞
                 </Link>
               </div>
             </div>
         </div>
-        
         <PeopleCount />
-        
 
         <TrendChart rangeHours={1} />
-          
         <div className="flex flex-col justify-center items-center">
         <Nagesen />
         </div>
