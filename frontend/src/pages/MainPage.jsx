@@ -54,23 +54,25 @@ const MainPage = () => {
         {/* お知らせセクション */}
         <div className="bg-Beige p-5 mb-10 lg:p-10 mt-3 lg:mt-15 text-base md:text-xl lg:text-xl animate-fade-in-bottom flex flex-col justify-center items-center">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">お知らせ</h2>
-            <div className="card bg-white shadow-xl w-[80%]">
-              <div className="card-body relative">
-                {/* 固定のお知らせ */}
-                <div className="mb-6">
-                  <ul className="list-disc list-inside text-base md:text-lg leading-relaxed">
-                    <li>10月10日(金) 4〜5限　山下プロジェクト ボードゲーム試遊会</li>
-                    <li>10月29日(水) 3〜4限　野球観戦イベント 〜ドジャース vs ブルージェイズ戦〜</li>
-                  </ul>
-                </div>
-                {/* 記事の一覧 */}
-                <ArticleList limit={5} />
+          <div className="card bg-white shadow-xl w-full max-w-4xl">
+            <div className="card-body">
 
-                <Link to="/articles" className="btn bg-Olive border-Olive text-white hover:bg-GreenDark absolute bottom-0 right-0">
+              {/* 固定のお知らせ */}
+              <ul className="list-disc list-inside text-base md:text-lg leading-relaxed space-y-1">
+                <li>10月10日(金) 4〜5限　山下プロジェクト ボードゲーム試遊会</li>
+                <li>10月29日(水) 3〜4限　野球観戦イベント 〜ドジャース vs ブルージェイズ戦〜</li>
+              </ul>
+
+              {/* 記事の一覧 */}
+              <ArticleList limit={5} />
+
+              <div className="card-actions justify-end mt-4">
+                <Link to="/articles" className="btn bg-Olive border-Olive text-white hover:bg-GreenDark">
                   一覧へ ＞
                 </Link>
               </div>
             </div>
+          </div>
         </div>
         <PeopleCount />
 
