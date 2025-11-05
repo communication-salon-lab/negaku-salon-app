@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PeopleCount from "./PeopleCount";
 import ArticleList from '../components/ArticleList';
 import Nagesen from '../components/Nagesen';
+import SnsSection from '../components/SnsSection';
 import { Helmet } from "react-helmet-async";
 import TrendChart from './/TrendChart';
 
@@ -53,44 +54,79 @@ const MainPage = () => {
 
         {/* お知らせセクション */}
         <div className="bg-Beige p-5 mb-10 lg:p-10 mt-3 lg:mt-15 text-base md:text-xl lg:text-xl animate-fade-in-bottom flex flex-col justify-center items-center">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">お知らせ</h2>
-          <div className="card bg-white shadow-xl w-full max-w-4xl">
-            <div className="card-body">
-
-              {/* 固定のお知らせ */}
-              <ul className="list-disc list-inside text-base md:text-lg leading-relaxed space-y-1">
-                <li>10月10日(金) 4〜5限　山下プロジェクト ボードゲーム試遊会</li>
-                <li>10月29日(水) 3〜4限　野球観戦イベント 〜ドジャース vs ブルージェイズ戦〜</li>
-              </ul>
-
-              {/* 記事の一覧 */}
+          <div className="text-center mb-8">
+            <h2 className="text-responsive-xl font-bold gradient-text mb-3 animate-slide-in-left">
+              お知らせ
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-Olive to-GreenDark mx-auto rounded-full"></div>
+          </div>
+          
+          <div className="card bg-white shadow-large hover-lift w-[90%] max-w-4xl relative overflow-hidden">
+            {/* カードの装飾 */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-Olive via-GreenDark to-Olive"></div>
+            
+            <div className="card-body relative p-8">
               <ArticleList limit={5} />
-
-              <div className="card-actions justify-end mt-4">
-                <Link to="/articles" className="btn bg-Olive border-Olive text-white hover:bg-GreenDark">
-                  一覧へ ＞
+              
+              {/* 改善されたボタン */}
+              <div className="flex justify-end mt-6">
+                <Link 
+                  to="/articles" 
+                  className="group inline-flex items-center gap-2 bg-gradient-to-r from-Olive to-GreenDark text-white px-6 py-3 rounded-xl font-medium shadow-medium hover:shadow-glow transition-all duration-300 hover:scale-105 focus-ring"
+                >
+                  <span>一覧を見る</span>
+                  <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
               </div>
             </div>
+            
+            {/* ホバー時のシマー効果 */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none"></div>
           </div>
         </div>
+        
         <PeopleCount />
+        
 
         <TrendChart rangeHours={1} />
+          
         <div className="flex flex-col justify-center items-center">
         <Nagesen />
         </div>
 
+        {/* SNSセクション */}
+        <SnsSection />
+
         {/* Googleカレンダー */}
         <div className="bg-Beige p-5 lg:p-10 animate-fade-in-bottom">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-GreenDark mb-6">イベントカレンダー</h2>
-          <div className="overflow-hidden rounded-lg shadow-lg">
-            <iframe
-              src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&src=bmVnYWt1c2Fsb24yMDI0QGdtYWlsLmNvbQ&color=%23039be5"
-              style={{ border: 0 }}
-              className="w-full h-[300px] md:h-[550px] lg:h-[750px]"
-              title="Calendar"
-            ></iframe>
+          <div className="text-center mb-8">
+            <h2 className="text-responsive-xl font-bold gradient-text mb-3 animate-slide-in-right">
+              イベントカレンダー
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-GreenDark to-Olive mx-auto rounded-full"></div>
+            <p className="text-gray-600 mt-4 text-responsive-base">
+              サロンの最新イベントをチェックしよう
+            </p>
+          </div>
+          
+          <div className="max-w-6xl mx-auto">
+            <div className="relative overflow-hidden rounded-2xl shadow-large hover-lift bg-white p-2">
+              {/* カレンダーの装飾フレーム */}
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-Olive via-GreenDark via-Olive to-GreenDark"></div>
+              
+              <iframe
+                src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&src=bmVnYWt1c2Fsb24yMDI0QGdtYWlsLmNvbQ&color=%23039be5"
+                style={{ border: 0 }}
+                className="w-full h-[300px] md:h-[550px] lg:h-[750px] rounded-xl"
+                title="Calendar"
+              ></iframe>
+              
+              {/* 角の装飾 */}
+              <div className="absolute top-2 right-2 w-4 h-4 bg-Olive rounded-full animate-pulse-soft"></div>
+              <div className="absolute bottom-2 left-2 w-3 h-3 bg-GreenDark rounded-full animate-pulse-soft" style={{ animationDelay: '1s' }}></div>
+            </div>
           </div>
         </div>
       </div>

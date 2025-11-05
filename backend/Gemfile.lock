@@ -139,6 +139,8 @@ GEM
     minitest (5.25.1)
     msgpack (1.7.5)
     mutex_m (0.2.0)
+    mysql2 (0.5.7)
+      bigdecimal
     net-imap (0.5.1)
       date
       net-protocol
@@ -227,6 +229,7 @@ DEPENDENCIES
   jwt
   lamby
   logger (~> 1.7)
+  mysql2 (~> 0.5)
   puma (>= 5.0)
   rack-cors
   rails (~> 7.1.5)
