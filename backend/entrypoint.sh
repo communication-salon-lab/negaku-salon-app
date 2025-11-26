@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 
 # 再起動時に残るPIDを削除

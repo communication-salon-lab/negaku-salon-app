@@ -14,7 +14,7 @@ COPY . .
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 
 EXPOSE 3500
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3500"]
