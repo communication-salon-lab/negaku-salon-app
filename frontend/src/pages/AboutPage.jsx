@@ -5,12 +5,12 @@ const AboutPage = () => {
   return (
     <>
       <Helmet>
-        <title>サロンについて｜コミュニケーションサロンラボ｜専修大学</title>
+        <title>サロンについて｜専修大学ネットワーク情報学部 コミュニケーションサロンラボ</title>
         <meta
           name="description"
-          content="コミュニケーションサロンラボは、専修大学ネットワーク情報学部の学生・教員・卒業生が自由に出入りし交流できる居場所です。空間、動線、道具、イベントを通じてコミュニケーションが広がる場所を創造します。"
+          content="専修大学ネットワーク情報学部のコミュニケーションサロンラボについて。専修大学ネットワーク情報学部の学生・教員・卒業生が自由に出入りし交流できる居場所です。空間、動線、道具、イベントを通じてコミュニケーションが広がる場所を創造します。"
         />
-        <meta name="keywords" content="コミュニケーションサロン,専修大学,ネットワーク情報学部,学生交流,居場所,イベント,ラボ紹介" />
+        <meta name="keywords" content="専修大学,専修大学 ネットワーク情報学部,ネットワーク情報学部,コミュニケーションサロン,学生交流,居場所,イベント,ラボ紹介,生田キャンパス" />
         <link rel="canonical" href="https://communication-salon.com/about" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content="サロンについて｜コミュニケーションサロンラボ" />

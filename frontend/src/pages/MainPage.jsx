@@ -12,12 +12,12 @@ const MainPage = () => {
     <>
       <div className="bg-Beige font-sans">
         <Helmet>
-          <title>コミュニケーションサロンラボ｜専修大学ネットワーク情報学部</title>
+          <title>専修大学ネットワーク情報学部 コミュニケーションサロンラボ｜学生交流の居場所</title>
           <meta
             name="description"
-            content="専修大学ネットワーク情報学部の学生・教員・卒業生が自由に集まり交流できるコミュニケーションスペース。イベント情報、リアルタイム混雑状況を確認できます。"
+            content="専修大学ネットワーク情報学部のコミュニケーションサロンラボ。専修大学ネットワーク情報学部の学生・教員・卒業生が自由に集まり交流できる居場所。リアルタイム混雑状況、イベント情報を確認できます。"
           />
-          <meta name="keywords" content="専修大学,ネットワーク情報学部,コミュニケーションサロン,学生交流,居場所,イベント" />
+          <meta name="keywords" content="専修大学,専修大学 ネットワーク情報学部,ネットワーク情報学部,専修大学 サロン,コミュニケーションサロン,ネ学サロン,学生交流,居場所,生田キャンパス" />
           <link rel="canonical" href="https://communication-salon.com/" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="コミュニケーションサロンラボ｜専修大学ネットワーク情報学部" />
