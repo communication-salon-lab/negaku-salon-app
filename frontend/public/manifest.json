@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ネ学サロン",
+  "name": "コミュニケーションサロンラボ",
+  "description": "専修大学ネットワーク情報学部の学生・教員・卒業生が自由に集まり交流できる居場所",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +11,21 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#9ba860",
+  "background_color": "#dcdac4",
+  "orientation": "portrait-primary",
+  "lang": "ja",
+  "dir": "ltr"
 }

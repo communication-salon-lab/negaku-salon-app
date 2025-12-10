@@ -12,19 +12,27 @@ const MainPage = () => {
     <>
       <div className="bg-Beige font-sans">
         <Helmet>
-          <title>コミュニケーションサロンラボ｜サロンについて | 専修大学 ネットワーク情報学部</title>
+          <title>コミュニケーションサロンラボ｜専修大学ネットワーク情報学部</title>
           <meta
             name="description"
-            content="専修大学ネットワーク情報学部コミュニケーションサロンラボの紹介ページ。"
+            content="専修大学ネットワーク情報学部の学生・教員・卒業生が自由に集まり交流できるコミュニケーションスペース。イベント情報、リアルタイム混雑状況を確認できます。"
           />
-          <link rel="canonical" href="https://communication-salon.com/about" />
-          <meta property="og:title" content="コミュニケーションサロンラボ｜サロンについて" />
+          <meta name="keywords" content="専修大学,ネットワーク情報学部,コミュニケーションサロン,学生交流,居場所,イベント" />
+          <link rel="canonical" href="https://communication-salon.com/" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="コミュニケーションサロンラボ｜専修大学ネットワーク情報学部" />
           <meta
             property="og:description"
-            content="学生・教員・卒業生が自由に集まれる居場所作りラボ。"
+            content="学生・教員・卒業生が自由に集まり交流できる居場所。イベント情報、リアルタイム混雑状況を確認できます。"
           />
-          <meta property="og:url" content="https://communication-salon.com/about" />
-          <meta property="og:image" content="https://communication-salon.com/og-image-about.png" />
+          <meta property="og:url" content="https://communication-salon.com/" />
+          <meta property="og:image" content="https://communication-salon.com/salon3.jpg" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="コミュニケーションサロンラボ｜専修大学" />
+          <meta name="twitter:description" content="学生・教員・卒業生が自由に集まり交流できる居場所" />
+          <meta name="twitter:image" content="https://communication-salon.com/salon3.jpg" />
         </Helmet>
         <div className="relative w-full h-screen animate-fade-in-fwd">
           {/* 背景画像 */}

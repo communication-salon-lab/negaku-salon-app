@@ -1,3 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /dashboard
+Disallow: /admin/
+Disallow: /login
+
+# Sitemap
+Sitemap: https://communication-salon.com/sitemap.xml
