@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -10,6 +10,7 @@ import ArticleDetailPage from './pages/ArticleDetailPage';
 import ArticleEditorPage from './pages/ArticleEditorPage';
 import ArticleListPage from './pages/ArticleListPage';
 import { Route, Routes, useLocation, Navigate} from 'react-router-dom';
+import { initGA, logPageView } from './analytics';
 
 // 認証が必要なページを守るためのコンポーネント
 const PrivateRoute = ({ children }) => {
@@ -20,7 +21,18 @@ const PrivateRoute = ({ children }) => {
 };
 
 function App() {
-  const location =useLocation()
+  const location = useLocation();
+
+  // Googleアナリティクスの初期化（初回のみ）
+  useEffect(() => {
+    initGA();
+  }, []);
+
+  // ページ遷移時にページビューを記録
+  useEffect(() => {
+    logPageView(location.pathname + location.search);
+  }, [location]);
+
   return (
     <div>
       <Header/>
