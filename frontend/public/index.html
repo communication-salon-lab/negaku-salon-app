@@ -4,12 +4,35 @@
   <meta charset="utf-8" />
   <link rel="icon" href="%PUBLIC_URL%/さろまる&ネカプくんパーツ分け（修正）.jpg" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="専修大学ネットワーク情報学部コミュニケーションサロンラボの公式サイト。" />
+  <meta name="theme-color" content="#9ba860" />
+  
+  <!-- SEO基本メタタグ -->
+  <meta name="description" content="専修大学ネットワーク情報学部コミュニケーションサロンラボ。学生・教員・卒業生が自由に集まり、交流できる居場所。イベント情報、混雑状況をリアルタイムで確認できます。" />
+  <meta name="keywords" content="専修大学,ネットワーク情報学部,コミュニケーションサロン,学生交流,居場所,イベント,サロンラボ" />
+  <meta name="author" content="専修大学ネットワーク情報学部" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- OGP (Open Graph Protocol) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="コミュニケーションサロンラボ" />
+  <meta property="og:title" content="コミュニケーションサロンラボ｜専修大学ネットワーク情報学部" />
+  <meta property="og:description" content="学生・教員・卒業生が自由に集まり、交流できる居場所。イベント情報、混雑状況をリアルタイムで確認できます。" />
+  <meta property="og:url" content="https://communication-salon.com/" />
+  <meta property="og:image" content="https://communication-salon.com/salon3.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="ja_JP" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="コミュニケーションサロンラボ｜専修大学" />
+  <meta name="twitter:description" content="学生・教員・卒業生が自由に集まり、交流できる居場所。" />
+  <meta name="twitter:image" content="https://communication-salon.com/salon3.jpg" />
+  
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/さろまる&ネカプくんパーツ分け（修正）.jpg" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <link rel="canonical" href="https://communication-salon.com/" />
-  <title>コミュニケーションサロンラボ｜専修大学</title>
+  <title>コミュニケーションサロンラボ｜専修大学ネットワーク情報学部</title>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-121P8WWW9S"></script>
@@ -20,18 +43,37 @@
     gtag('config', 'G-121P8WWW9S');
   </script>
 
-  <!-- Schema.org JSON-LD -->
+  <!-- Schema.org JSON-LD（構造化データ） -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"EducationalOrganization",
-    "name":"コミュニケーションサロンラボ",
-    "url":"https://communication-salon.com/",
-    "logo":"https://communication-salon.com/logo.png",
-    "department":{
-      "@type":"Organization",
-      "name":"専修大学 ネットワーク情報学部"
-    }
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "コミュニケーションサロンラボ",
+    "alternateName": "ネ学サロン",
+    "url": "https://communication-salon.com/",
+    "logo": "https://communication-salon.com/logo.png",
+    "image": "https://communication-salon.com/salon3.jpg",
+    "description": "専修大学ネットワーク情報学部の学生・教員・卒業生が自由に集まり、交流できるコミュニケーションスペース",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "JP",
+      "addressRegion": "神奈川県",
+      "addressLocality": "川崎市"
+    },
+    "parentOrganization": {
+      "@type": "CollegeOrUniversity",
+      "name": "専修大学",
+      "url": "https://www.senshu-u.ac.jp/"
+    },
+    "department": {
+      "@type": "Organization",
+      "name": "専修大学 ネットワーク情報学部",
+      "url": "https://www.senshu-u.ac.jp/network/"
+    },
+    "sameAs": [
+      "https://twitter.com/negakusalon",
+      "https://www.instagram.com/negakusalon/"
+    ]
   }
   </script>
 </head>
