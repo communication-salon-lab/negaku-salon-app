@@ -13,6 +13,59 @@ const categoryBadgeMap = {
   'シネマ': 'badge-secondary',
 };
 
+// 手動で追加するお知らせデータ
+const staticArticles = [
+  {
+    id: 'static-7',
+    title: '小田切先生　ものづくりイベント（地域の学童対象）',
+    content: '15:30-16:30',
+    category: 'イベント',
+    created_at: '2025-12-17T15:30:00'
+  },
+  {
+    id: 'static-6',
+    title: '映画イベント（HOME ALONE）',
+    content: '',
+    category: 'シネマ',
+    created_at: '2025-12-17T00:00:00'
+  },
+  {
+    id: 'static-5',
+    title: 'プロジェクト最終発表会、オープンラボ:10号館、オープンサロン:サロン1＋２',
+    content: '',
+    category: 'イベント',
+    created_at: '2025-12-13T00:00:00'
+  },
+  {
+    id: 'static-4',
+    title: '飯塚先生による、卒業生相談会',
+    content: '５限',
+    category: '相談会',
+    created_at: '2025-12-12T16:20:00'
+  },
+  {
+    id: 'static-3',
+    title: 'プロジェクト情報交換会',
+    content: '３限',
+    category: 'イベント',
+    created_at: '2025-12-05T13:00:00'
+  },
+  {
+    id: 'static-2',
+    title: '映画イベント（クレヨンしんちゃん逆襲のロボとーちゃん）',
+    content: '15:30-17:30',
+    category: 'シネマ',
+    created_at: '2025-11-28T15:30:00'
+  },
+  {
+    id: 'static-1',
+    title: 'wiiイベント＋もっこりカフェ２',
+    content: '12:30-14:30',
+    category: 'イベント',
+    created_at: '2025-11-28T12:30:00'
+  },
+];
+
 
 // コンポーネント名を ArticleList に変更
 const ArticleList = ({ limit }) => {
@@ -23,10 +76,15 @@ const ArticleList = ({ limit }) => {
     const fetchArticles = async () => {
       try {
         const response = await apiClient.get('/articles');
-        const sortedArticles = response.data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        // APIデータと固定データを結合してソート
+        const combinedArticles = [...response.data, ...staticArticles];
+        const sortedArticles = combinedArticles.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         setArticles(sortedArticles);
       } catch (error) {
         console.error("記事の読み込みに失敗しました", error);
+        // エラー時は固定データのみを表示
+        const sortedStatic = staticArticles.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        setArticles(sortedStatic);
       } finally {
         setLoading(false);
       }
