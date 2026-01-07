@@ -7,23 +7,14 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://communication-salon.com', "http://localhost:8000"
+    # 許可するドメイン
+    origins 'https://communication-salon.com', 'http://localhost:8000', 'http://localhost:3000'
 
-    resource "*",
+    resource '*',
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
-      credentials: true, # Cookieを使う場合はtrueにする
-      expose: ['Authorization'] # レスポンスヘッダーにAuthorizationを含めることを許可
+      credentials: true,
+      expose: ['Authorization']
   end
 end
 
-# backend/config/initializers/cors.rb
-# https://nnxmjtjtip.ap-northeast-1.awsapprunner.com/
-Rails.application.config.middleware.insert_before 0, Rack::Cors do
-  allow do
-    origins ENV.fetch('CORS_ORIGIN', 'http://localhost:8000')
-    resource '*',
-            headers: :any,
-            methods: %i[get post put patch delete options head]
-  end
-end
