@@ -118,12 +118,12 @@ const MainPage = () => {
               サロンの最新イベントをチェックしよう
             </p>
           </div>
-          
+
           <div className="max-w-6xl mx-auto">
             <div className="relative overflow-hidden rounded-2xl shadow-large hover-lift bg-white p-2">
               {/* カレンダーの装飾フレーム */}
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-Olive via-GreenDark via-Olive to-GreenDark"></div>
-              
+
               <iframe
                 src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Asia%2FTokyo&showPrint=0&src=bmVnYWt1c2Fsb24yMDI0QGdtYWlsLmNvbQ&color=%23039be5"
                 style={{ border: 0 }}

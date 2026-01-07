@@ -27,6 +27,7 @@ services:
               bundle install &&
               bundle exec rails s -b 0.0.0.0 -p $${PORT}"
     environment:
+      JWT_SECRET: "this_is_a_secret_key_for_development"
       DB_HOST: db
       DB_NAME: salon_development
       DB_USER: app

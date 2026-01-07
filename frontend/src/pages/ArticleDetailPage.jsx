@@ -10,7 +10,7 @@ const ArticleDetailPage = () => {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const response = await apiClient.get(`/api/v1/articles/${id}`);
+        const response = await apiClient.get(`/articles/${id}`);
         setArticle(response.data);
       } catch (error) {
         console.error("記事の読み込みに失敗しました", error);

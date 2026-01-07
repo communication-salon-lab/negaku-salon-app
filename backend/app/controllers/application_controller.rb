@@ -1,20 +1,6 @@
 class ApplicationController < ActionController::API
   private
 
-  def ddb
-    @ddb ||= Aws::DynamoDB::Client.new(
-      region: ENV.fetch("AWS_REGION", "ap-northeast-1")
-    )
-  end
-
-  def articles_table
-    ENV.fetch("ARTICLES_TABLE", "Articles")
-  end
-
-  def admins_table
-    ENV.fetch("ADMINS_TABLE", "Admins")
-  end
-
   def authenticate_admin!
     token = request.headers['Authorization']&.split(' ')&.last
     return render json: { error: 'Not Authorized' }, status: :unauthorized unless token
