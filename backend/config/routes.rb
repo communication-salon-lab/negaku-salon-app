@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   # ヘルスチェック用
   get "/up",     to: proc { [200, {}, ["OK"]] }
   get "/health", to: proc { [200, { "Content-Type" => "text/plain" }, ["ok"]] }
+
+  # スリープ対策
+  get '/', to: proc { [200, {}, ["OK"]] }
 end
