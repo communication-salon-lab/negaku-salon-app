@@ -29,7 +29,7 @@ export default function TrendChart({ rangeHours = 24 }) {
         .finally(() => setLoading(false));
     };
     fetchData();
-    const id = setInterval(fetchData, 60 * 1000); // 1分毎に更新
+    const id = setInterval(fetchData, 5 * 60 * 1000) // 5分毎に更新
     return () => clearInterval(id);
   }, [rangeHours]);
 
@@ -131,8 +131,6 @@ export default function TrendChart({ rangeHours = 24 }) {
           <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">
             本日の人数推移
           </h3>
-
-          {loading && <p className="text-gray-500">読み込み中…</p>}
           {!loading && err && <p className="text-red-600">エラー: {err}</p>}
           {!loading && !err && points.length === 0 && (
             <p className="text-gray-500">データがありません。</p>
