@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import dayjs from 'dayjs';
@@ -6,7 +5,7 @@ import 'chart.js/auto';
 
 const API = 'https://1riddswy22.execute-api.ap-northeast-1.amazonaws.com/default';
 
-export default function TrendChart({ rangeHours = 24 }) {
+export default function TrendChart() {
   const [points, setPoints] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
@@ -14,9 +13,7 @@ export default function TrendChart({ rangeHours = 24 }) {
   // データ取得
   useEffect(() => {
     const fetchData = () => {
-      const from = dayjs().subtract(rangeHours, 'hour').toISOString();
-      const to = dayjs().toISOString();
-      fetch(`${API}/trend?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`)
+      fetch(`${API}/trend`)
         .then((r) => {
           if (!r.ok) throw new Error(`HTTP ${r.status}`);
           return r.json();
@@ -29,9 +26,9 @@ export default function TrendChart({ rangeHours = 24 }) {
         .finally(() => setLoading(false));
     };
     fetchData();
-    const id = setInterval(fetchData, 5 * 60 * 1000) // 5分毎に更新
+    const id = setInterval(fetchData, 5 * 60 * 1000); // 5分毎に更新
     return () => clearInterval(id);
-  }, [rangeHours]);
+  }, []);
 
   // Y軸の上限に少し余白を作る
   const yMax = useMemo(() => {
@@ -42,43 +39,39 @@ export default function TrendChart({ rangeHours = 24 }) {
   // Chart.js scriptableオプションでキャンバス依存のグラデーションを作る
   const chartData = useMemo(() => {
     const counts = points.map((p) => p.count);
-    const labels = points.map((p) =>
-      rangeHours <= 6 ? dayjs(p.ts).format('HH:mm') : dayjs(p.ts).format('MM/DD HH:mm')
-    );
+    const labels = points.map((p) => dayjs(p.ts).format('HH:mm')); // 同日内なので時刻のみ
 
     return {
       labels,
-        datasets: [
-          {
-            label: '人数',
-            data: counts,
-
-            cubicInterpolationMode: 'monotone',
-            tension: 0.35,
-            borderWidth: 3,
-            pointRadius: 0,
-            pointHoverRadius: 5,
-            hitRadius: 8,
-            fill: true,
-
-            borderColor: (ctx) => {
-              const { chart } = ctx;
-              const { ctx: c } = chart;
-              return c ? 'rgba(34,197,94,1)': undefined;
-            },
-            backgroundColor: (ctx) => {
-              const { chart } = ctx;
-              const { ctx: c, chartArea } = chart || {};
-              if (!c || !chartArea) return undefined;
-              const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-              g.addColorStop(0, 'rgba(34,197,94,0.28)');
-              g.addColorStop(1, 'rgba(34,197,94,0.04)');
-              return g;
-            }
+      datasets: [
+        {
+          label: '人数',
+          data: counts,
+          cubicInterpolationMode: 'monotone',
+          tension: 0.35,
+          borderWidth: 3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          hitRadius: 8,
+          fill: true,
+          borderColor: (ctx) => {
+            const { chart } = ctx;
+            const { ctx: c } = chart;
+            return c ? 'rgba(34,197,94,1)' : undefined;
+          },
+          backgroundColor: (ctx) => {
+            const { chart } = ctx;
+            const { ctx: c, chartArea } = chart || {};
+            if (!c || !chartArea) return undefined;
+            const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+            g.addColorStop(0, 'rgba(34,197,94,0.28)');
+            g.addColorStop(1, 'rgba(34,197,94,0.04)');
+            return g;
           }
-        ]
+        }
+      ]
     };
-  }, [points, rangeHours]);
+  }, [points]);
 
   const options = useMemo(
     () => ({
@@ -129,13 +122,12 @@ export default function TrendChart({ rangeHours = 24 }) {
       <div className="card bg-white shadow-xl">
         <div className="card-body">
           <h3 className="card-title text-Olive text-lg md:text-xl lg:text-2xl">
-            本日の人数推移
+            本日の人数推移（9:00〜21:00）
           </h3>
           {!loading && err && <p className="text-red-600">エラー: {err}</p>}
           {!loading && !err && points.length === 0 && (
             <p className="text-gray-500">データがありません。</p>
           )}
-
           {!loading && !err && points.length > 0 && (
             <div className="h-64 md:h-80 lg:h-96">
               <Line data={chartData} options={options} />
