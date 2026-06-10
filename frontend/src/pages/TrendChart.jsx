@@ -10,7 +10,6 @@ export default function TrendChart() {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
 
-  // データ取得
   useEffect(() => {
     const fetchData = () => {
       fetch(`${API}/trend`)
@@ -19,28 +18,29 @@ export default function TrendChart() {
           return r.json();
         })
         .then((d) => {
-          setPoints(Array.isArray(d.points) ? d.points : []);
+          const raw = Array.isArray(d.points) ? d.points : [];
+          const sorted = raw
+            .filter((p) => p && p.ts != null && Number.isFinite(Number(p.count)))
+            .sort((a, b) => new Date(a.ts).getTime() - new Date(b.ts).getTime());
+          setPoints(sorted);
           setErr(null);
         })
         .catch((e) => setErr(e.message || 'fetch error'))
         .finally(() => setLoading(false));
     };
     fetchData();
-    const id = setInterval(fetchData, 5 * 60 * 1000); // 5分毎に更新
+    const id = setInterval(fetchData, 5 * 60 * 1000);
     return () => clearInterval(id);
   }, []);
 
-  // Y軸の上限に少し余白を作る
   const yMax = useMemo(() => {
     const m = Math.max(0, ...points.map((p) => Number(p.count) || 0));
     return m <= 3 ? 3 : m + 1;
   }, [points]);
 
-  // Chart.js scriptableオプションでキャンバス依存のグラデーションを作る
   const chartData = useMemo(() => {
-    const counts = points.map((p) => p.count);
-    const labels = points.map((p) => dayjs(p.ts).format('HH:mm')); // 同日内なので時刻のみ
-
+    const counts = points.map((p) => Number(p.count) || 0);
+    const labels = points.map((p) => dayjs(p.ts).format('HH:mm'));
     return {
       labels,
       datasets: [
@@ -49,27 +49,22 @@ export default function TrendChart() {
           data: counts,
           cubicInterpolationMode: 'monotone',
           tension: 0.35,
-          borderWidth: 3,
+          borderWidth: 2,
           pointRadius: 0,
           pointHoverRadius: 5,
           hitRadius: 8,
           fill: true,
-          borderColor: (ctx) => {
-            const { chart } = ctx;
-            const { ctx: c } = chart;
-            return c ? 'rgba(34,197,94,1)' : undefined;
-          },
+          borderColor: 'rgba(34,197,94,1)',
           backgroundColor: (ctx) => {
-            const { chart } = ctx;
-            const { ctx: c, chartArea } = chart || {};
-            if (!c || !chartArea) return undefined;
+            const { ctx: c, chartArea } = ctx.chart || {};
+            if (!c || !chartArea) return 'rgba(34,197,94,0.15)';
             const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
             g.addColorStop(0, 'rgba(34,197,94,0.28)');
             g.addColorStop(1, 'rgba(34,197,94,0.04)');
             return g;
-          }
-        }
-      ]
+          },
+        },
+      ],
     };
   }, [points]);
 
@@ -80,39 +75,38 @@ export default function TrendChart() {
       maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       spanGaps: true,
-      elements: { line: { tension: 0.35 } },
       scales: {
         x: {
           grid: { display: false },
-          ticks: { maxRotation: 0, autoSkip: true, autoSkipPadding: 12 }
+          ticks: {
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 12,
+          },
         },
         y: {
           beginAtZero: true,
           suggestedMax: yMax,
-          ticks: { precision: 0 },
-          grid: {
-            drawBorder: false,
-            color: (ctx) => (ctx.index % 2 === 0 ? 'rgba(0,0,0,0.06)' : 'rgba(0,0,0,0.03)')
-          }
-        }
+          ticks: { precision: 0, stepSize: 5 },
+          grid: { color: 'rgba(0,0,0,0.06)' },
+        },
       },
       plugins: {
         legend: {
           display: true,
-          labels: { boxWidth: 12, boxHeight: 12, usePointStyle: true, pointStyle: 'line' }
+          labels: { boxWidth: 12, boxHeight: 12, usePointStyle: true, pointStyle: 'line' },
         },
         tooltip: {
           usePointStyle: true,
           callbacks: {
             title: (items) => {
-              const i = items[0];
-              const ts = points[i.dataIndex]?.ts;
+              const ts = points[items[0].dataIndex]?.ts;
               return ts ? dayjs(ts).format('MM/DD HH:mm') : '';
             },
-            label: (ctx) => `人数: ${ctx.parsed.y} 人`
-          }
-        }
-      }
+            label: (ctx) => `人数: ${ctx.parsed.y} 人`,
+          },
+        },
+      },
     }),
     [points, yMax]
   );
