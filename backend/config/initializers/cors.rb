@@ -8,13 +8,19 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     # 許可するドメイン
-    origins 'https://communication-salon.com', 'http://localhost:8000', 'http://localhost:3000'
+    origins(
+      'https://communication-salon.com',
+      'https://www.communication-salon.com',
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'http://localhost:8000'
+    )
 
     resource '*',
       headers: :any,
       methods: [:get, :post, :put, :patch, :delete, :options, :head],
       credentials: true,
-      expose: ['Authorization']
+      expose: ['Authorization'],
+      max_age: 600
   end
 end
-
