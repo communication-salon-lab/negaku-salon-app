@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 // 2枚目に表示する画像のリスト（新しい順）
 const imagesForSlot2 = [
+  { src: '/price4.png', label: '2025年度後期' },
   { src: '/price3.png', label: '2025年度後期' },
   { src: '/price2.png', label: '2025年度前期' },
   { src: '/price1.png', label: '2024年度後期' },
