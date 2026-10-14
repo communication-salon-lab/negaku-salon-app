@@ -45,7 +45,7 @@ const ArticleDetailPage = () => {
         <div className ="bg-Olive h-20 md:h-60 flex items-center justify-center">
           <h1 className="text-white text-2xl md:text-5xl font-bold tracking-widest">お知らせ</h1>
         </div>
-        <div className="bg-white m-16 p-5 md:p-10 mx-auto w-[80%] md:w-[60%] h-[400px] md:h-[1000px] flex-grow relative overflow-hidden">
+        <div className="bg-white my-10 md:my-16 p-5 lg:p-10 mx-auto w-[80%] md:w-[60%] h-[400px] md:h-[1000px] flex-grow relative overflow-hidden">
           <div className="border-b-4 border-Olive ">
             <h1 className="text-lg md:text-2xl lg:text-4xl md:pb-3">
               {article.title}
@@ -54,7 +54,7 @@ const ArticleDetailPage = () => {
               </span>
             </h1>
           </div>
-          <p className="mb-7 text-gray-500 text-xs md:text-base">作成日: {new Date(article.created_at).toLocaleDateString()}</p>
+          <p className="mb-6 text-gray-500 text-xs md:text-base">作成日: {new Date(article.created_at).toLocaleDateString()}</p>
           <div className="whitespace-pre-wrap text-gray-800 text-xs md:text-base">
             {article.content}
           </div>
@@ -66,7 +66,7 @@ const ArticleDetailPage = () => {
         </div>
         
         {/* ナビゲーションボタン */}
-        <div className="mx-auto w-[80%] md:w-[60%] mb-16 flex justify-between items-center gap-4">
+        <div className="mx-auto w-[80%] md:w-[60%] mb-10 md:mb-16 flex justify-between items-center gap-4">
           <button
             onClick={() => navigate('/articles')}
             className="px-6 py-3 bg-Olive text-white rounded hover:bg-opacity-80 transition"
