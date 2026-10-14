@@ -61,7 +61,7 @@ const MainPage = () => {
         </div>
 
         {/* お知らせセクション */}
-        <div className="bg-Beige p-5 mb-10 lg:p-10 mt-3 lg:mt-15 text-base md:text-xl lg:text-xl animate-fade-in-bottom flex flex-col justify-center items-center">
+        <div className="bg-Beige p-5 lg:p-10 mb-10 md:mb-16 text-base md:text-xl lg:text-xl animate-fade-in-bottom flex flex-col justify-center items-center">
           <div className="text-center mb-8">
             <h2 className="text-responsive-xl font-bold gradient-text mb-3 animate-slide-in-left">
               お知らせ
@@ -96,11 +96,11 @@ const MainPage = () => {
         </div>
         
         <PeopleCount />
-        
 
-        <TrendChart rangeHours={1} />
-          
-        <div className="flex flex-col justify-center items-center">
+        {/* 一旦退避中 */}
+        {/* <TrendChart rangeHours={1} /> */}
+
+        <div className="p-5 lg:p-10 mb-10 md:mb-16 flex flex-col justify-center items-center">
         <Nagesen />
         </div>
 

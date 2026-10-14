@@ -74,20 +74,20 @@ const PeopleCount = () => {
     : "時刻を取得中...";
 
   return (
-    <div>
+    <div className="p-5 lg:p-10 mb-10 md:mb-16 animate-fade-in-bottom">
       {error ? (
-        <p className="text-red-500">現在メンテナンス中です..</p>
+        <p className="text-red-500 text-center">現在メンテナンス中です..</p>
       ) : (
-        <>
-          <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
+          <div className="w-full flex flex-col items-center mb-10 md:mb-16">
             <h3 className="card-title text-red-600 text-2xl md:text-2xl lg:text-3xl">現在の混雑状況</h3>
             <p className="text-gray-600 mt-2 text-2xl md:text-1xl lg:text-2xl">{formattedTimestamp}現在</p>
             <img
               src="/konzatu.png"
               alt="混雑画像"
-              className="w-[100vw] md:w-[70vw]"
+              className="w-[100vw] md:w-[70vw] mt-6 md:mt-8"
             />
-            <div className="bg-white w-1/3 md:w-1/4 lg:w-1/4 m-10">
+            <div className="bg-white w-1/3 md:w-1/4 lg:w-1/4 mt-8 md:mt-10">
               <h3 className="text-white bg-Olive text-sm md:text-sm lg:text-1xl text-center p-2">コミュニケーションサロン１</h3>
               {/* <p>現在の混雑状況は「普通」です。</p> */}
               <div className="flex justify-center">
@@ -99,8 +99,20 @@ const PeopleCount = () => {
               </div>
             </div>
           </div>
+
+          <div className="w-full flex flex-col items-center">
+            <h2 className="text-responsive-xl font-bold gradient-text mb-3 animate-slide-in-left">
+              時限ごとの平均人数
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-Olive to-GreenDark mx-auto rounded-full"></div>
+            <img
+              src="/heatmap.png"
+              alt="時限ごとの平均人数"
+              className="w-[100vw] md:w-[70vw] mt-6 md:mt-8"
+            />
+          </div>
           {/* <p>サロン1は、現在 {peopleCount} 人</p> */}
-        </>
+        </div>
       )}
     </div>
   );

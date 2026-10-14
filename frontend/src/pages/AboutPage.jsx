@@ -27,7 +27,7 @@ const AboutPage = () => {
         <meta name="twitter:description" content="学生・教員・卒業生が自由に交流できる居場所" />
         <meta name="twitter:image" content="https://communication-salon.com/salon1.jpg" />
       </Helmet>
-      <div className="p-5 lg:p-10 pt-20 bg-Beige text-left font-sans">
+      <div className="p-5 lg:p-10 pt-24 bg-Beige text-left font-sans">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 text-center text-GreenDark animate-fade-in-fwd">サロンについて</h1>
 
         <div className="breadcrumbs text-sm mb-8 animate-fade-in-fwd">
@@ -38,8 +38,8 @@ const AboutPage = () => {
         </div>
 
         {/* サロンの説明 */}
-        <div className="mb-10 pt-4 text-base md:text-xl lg:text-xl animate-fade-in-bottom">
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-GreenDark">コミュニケーションサロンラボ</h2>
+        <div className="mb-10 md:mb-16 text-base md:text-xl lg:text-xl animate-fade-in-bottom">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-GreenDark">コミュニケーションサロンラボ</h2>
           <p className="break-words">
             ネットワーク情報学部の学生や教員、卒業生が自由に出入りし、自由に過ごせる居場所づくりを目指すラボです。<br />
             空間、動線、道具、イベントなどを考えて、コミュニケーションが広がる場所を生み出します。
@@ -48,9 +48,9 @@ const AboutPage = () => {
         </div>
 
         {/* キャラクター紹介 */}
-        <div className="mb-10 pt-4">
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-GreenDark animate-fade-in-bottom">キャラクター紹介</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mb-10 md:mb-16">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-GreenDark animate-fade-in-bottom">キャラクター紹介</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* カード1 */}
             <div className="card lg:card-side bg-base-100 shadow-xl animate-fade-in-bottom">
               <figure>
@@ -116,9 +116,9 @@ const AboutPage = () => {
         </div>
 
         {/* サロンの設備 */}
-        <div className="mb-10 pt-4">
-          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-GreenDark animate-fade-in-bottom">サロンの設備</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mb-10 md:mb-16">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6 text-GreenDark animate-fade-in-bottom">サロンの設備</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* カード1 */}
             <div className="card lg:card-side bg-base-100 shadow-xl animate-fade-in-bottom">
               <figure>

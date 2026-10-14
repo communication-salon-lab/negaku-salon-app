@@ -29,7 +29,7 @@ const ArticleListPage = () => {
           <meta name="twitter:card" content="summary_large_image" />
         </Helmet>
         <div className="bg-Beige min-h-screen pt-24 pb-12">
-      <div className="w-full max-w-4xl mx-auto px-4">
+      <div className="w-full max-w-4xl mx-auto px-4 md:px-8">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-GreenDark mb-8">
           お知らせ一覧
         </h2>

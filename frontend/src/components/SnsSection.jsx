@@ -12,8 +12,8 @@ const SnsSection = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-br from-Beige via-white to-Beige p-5 lg:p-10 animate-fade-in-bottom">
-      <div className="text-center mb-12">
+    <div className="bg-gradient-to-br from-Beige via-white to-Beige p-5 lg:p-10 mb-10 md:mb-16 animate-fade-in-bottom">
+      <div className="text-center mb-8">
         <h2 className="text-responsive-xl font-bold gradient-text mb-3 animate-slide-in-left">
           SNS最新情報
         </h2>
