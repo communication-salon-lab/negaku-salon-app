@@ -115,6 +115,7 @@ const PeopleCount = () => {
         </div>
 
 )}
+
     </div>
   );
 };
