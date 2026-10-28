@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ArticleList from '../components/ArticleList';
+import { Link } from 'react-router-dom';
 
 const ArticleListPage = () => {
 
@@ -42,7 +43,7 @@ const ArticleListPage = () => {
           onClick={() => navigate(-1)} 
           className="btn btn-ghost text-Olive hover:bg-white hover:bg-opacity-20"
         >
-          ← 一覧に戻る
+          ← ホームに戻る
         </button>
       </div>
     </div>

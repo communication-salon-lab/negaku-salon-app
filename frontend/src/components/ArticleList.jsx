@@ -105,10 +105,11 @@ const ArticleList = ({ limit }) => {
   return (
     <div className="space-y-4 p-2">
       {displayArticles.map((article, index) => (
-        <div 
+        <Link 
           key={article.id} 
-          className="group relative bg-gradient-to-r from-white to-gray-50 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:border-Olive/30"
+          className="group relative block bg-gradient-to-r from-white to-gray-50 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 hover:border-Olive/30"
           style={{ animationDelay: `${index * 0.1}s` }}
+          to={`/articles/${article.id}`}
         >
           {/* 左側のアクセントライン */}
           <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-Olive to-GreenDark transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
@@ -133,10 +134,7 @@ const ArticleList = ({ limit }) => {
               
               {/* タイトルと内容セクション */}
               <div className="flex-1">
-                <Link 
-                  to={`/articles/${article.id}`}
-                  className="block group-hover:text-GreenDark transition-colors duration-200"
-                >
+              
                   <h3 className="text-lg font-semibold text-gray-800 mb-2 group-hover:text-GreenDark">
                     {article.title}
                   </h3>
@@ -145,7 +143,6 @@ const ArticleList = ({ limit }) => {
                       {article.content}
                     </p>
                   )}
-                </Link>
               </div>
               
               {/* 右側の矢印アイコン */}
@@ -159,7 +156,7 @@ const ArticleList = ({ limit }) => {
           
           {/* ホバー時のグラデーション効果 */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></div>
-        </div>
+        </Link>
       ))}
     </div>
   );
