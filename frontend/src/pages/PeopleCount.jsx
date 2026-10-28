@@ -106,7 +106,7 @@ const PeopleCount = () => {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-Olive to-GreenDark mx-auto rounded-full"></div>
             <img
-              src="/heatmap1.png"
+              src="/heatmap20261028.png"
               alt="時限ごとの平均人数"
               className="w-[100vw] md:w-[70vw] mt-6 md:mt-8"
             />
