@@ -40,7 +40,7 @@ const ArticleListPage = () => {
       </div>
       <div className="text-center mt-8">
         <button 
-          onClick={() => navigate(-1)} 
+          onClick={() => navigate('/')} 
           className="btn btn-ghost text-Olive hover:bg-white hover:bg-opacity-20"
         >
           ← ホームに戻る
