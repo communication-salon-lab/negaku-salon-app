@@ -39,9 +39,28 @@ const Header = () => {
     };
   }, [isOpen]);
 
+  // 下にスクロールしたら隠し、上にスクロールしたら出す（ページ上部 100px 以内では常に表示）
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = Math.max(window.scrollY, 0); // iOS のバウンスでマイナスになる分を無視
+      if (Math.abs(y - lastY) < 10) return; // 小さな揺れは無視
+      setHidden(y > lastY && y > 100);
+      lastY = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <header className="mt-2 fixed top-0 left-0 w-full z-50 animate-fade-in-fwd">
-      <div className="relative container mx-auto flex justify-between items-center font-sans px-4 py-3">
+    // 登場アニメーション（transform を保持する）と隠す transform がぶつからないよう、アニメーションは内側の div に付ける
+    <header
+      className={`mt-2 fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
+        hidden ? '-translate-y-full' : ''
+      }`}
+    >
+      <div className="relative container mx-auto flex justify-between items-center font-sans px-4 py-3 animate-fade-in-fwd">
         {/* ロゴとタイトル */}
         <div className="flex items-center group">
           <div className="relative">
