@@ -1,4 +1,5 @@
 import React from 'react';
+import { FEEDBACK_FORM_URL } from '../constants/links';
 
 const Footer = () => {
   return (
@@ -65,7 +66,7 @@ const Footer = () => {
               </svg>
             </a>
             <a 
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdf30G72eQoyK6lpGS0wbXRhGSQOrVhWPM0pJfbd0Gv6rmF_Q/viewform" 
+              href={FEEDBACK_FORM_URL} 
               target="_blank" 
               rel="noopener noreferrer"
               className="group p-3 rounded-full bg-white/20 hover:bg-Olive transition-all duration-300 hover:scale-110 hover:shadow-lg"
