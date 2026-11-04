@@ -35,7 +35,7 @@ const ArticleDetailPage = () => {
       }
     };
     fetchArticle();
-  }, [id]);
+  }, [id]); 
 
   if (loading) return <p>読み込み中...</p>;
   if (!article) return <p>記事が見つかりません。</p>;
@@ -68,10 +68,10 @@ const ArticleDetailPage = () => {
         {/* ナビゲーションボタン */}
         <div className="mx-auto w-[80%] md:w-[60%] mb-10 md:mb-16 flex justify-between items-center gap-4">
           <button
-            onClick={() => navigate('/articles')}
+            onClick={() => navigate('/')}
             className="px-6 py-3 bg-Olive text-white rounded hover:bg-opacity-80 transition"
           >
-            一覧に戻る
+            ホームに戻る
           </button>
           
           <div className="flex gap-4">
